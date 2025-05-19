@@ -1,7 +1,9 @@
-Laura Gómez,1045896542,24,4.8,ALO001; ALO007
-Santiago Martínez,1032547896,36,4.7,ALO002
-Daniela Pérez,1014589623,18,4.5,ALO003; ALO009
-Jorge Herrera,1023698741,30,4.6,ALO004; ALO008
-María Fernanda Ruiz,1098745236,12,4.9,ALO005
-Catalina Ríos,1001458963,20,4.4,ALO006
-Lucía Bonilla,1056932147,15,4.3,ALO010
+Nombre,Documento,Contraseña,TiempoEnPlataforma,Puntuación,CodigosPropiedades
+Laura Gómez,1045896542,lgomez2025,24,4.8,001;007
+Santiago Martínez,1032547896,smartinez2025,36,4.7,002
+Daniela Pérez,1014589623,dperez2025,18,4.5,003;009
+Jorge Herrera,1023698741,jherrera2025,30,4.6,004;008
+María Fernanda Ruiz,1098745236,mfruiz2025,12,4.9,005
+Catalina Ríos,1001458963,crios2025,20,4.4,006
+Lucía Bonilla,1056932147,lbonilla2025,15,4.3,010
+
