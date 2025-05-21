@@ -1,17 +1,24 @@
-#include "usuarios.h"
-#include <cstring>
-#include<iostream>
+#include "Usuarios.h"
+#include <iostream>
 
-usuarios() {}
+Usuarios::Usuarios() {}
 
-usuarios::usuarios(const char* doc, const char* pass, int tiempo, float punt) {
-    strcpy(documento, doc);
-    strcpy(clave, pass);
-    tiempoplat = tiempo;
+Usuarios::Usuarios(const std::string& nom, const std::string& doc, const std::string& clv,
+                 const std::string& tiempo, const std::string& punt, const std::string& ident) {
+    nombre = nom;
+    documento = doc;
+    clave = clv;
+    tiempoPlataforma = tiempo;
     puntuacion = punt;
+    id = ident;
 }
 
-void mostrarDatos() {
-    std::cout << "Usuario: " << documento << ", Tiempo: " << tiempoplat << ", Puntuación: " << puntuacion << std::endl;
+void Usuarios::mostrar() const {
+    std::cout << "Nombre: " << nombre << "\n";
+    std::cout << "Documento: " << documento << "\n";
+    std::cout << "Clave: " << clave << "\n";
+    std::cout << "Tiempo Plataforma: " << tiempoPlataforma << "\n";
+    std::cout << "Puntuación: " << puntuacion << "\n";
+    std::cout << "ID: " << id << "\n";
+    std::cout << "-------------------------\n";
 }
-

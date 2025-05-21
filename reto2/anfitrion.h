@@ -1,4 +1,4 @@
-#ifndef ANFITRION_H
+/*#ifndef ANFITRION_H
 #define ANFITRION_H
 
 class anfitrion {
@@ -16,7 +16,7 @@ public:
     void mostrarDatos() {
         std::cout << "Anfitrión: " << documento << ", Antigüedad: " << antiguedad << ", Puntuación: " << puntuacion << std::endl;
     }
-};
+};/*
 
 
 #endif // ANFITRION_H

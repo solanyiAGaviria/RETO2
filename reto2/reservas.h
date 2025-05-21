@@ -1,4 +1,4 @@
-#ifndef RESERVAS_H
+/*#ifndef RESERVAS_H
 #define RESERVAS_H
 #include "alojamientos.h"
 // No incluyas "usuarios.h" aquí directamente si ya reservas está incluida allá → evitar recursividad
@@ -106,5 +106,5 @@ private:
 */
 
 
-#endif // RESERVAS_H
+//#endif // RESERVAS_H
 

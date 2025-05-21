@@ -1,4 +1,4 @@
-#ifndef ALOJAMIENTOS_H
+/*#ifndef ALOJAMIENTOS_H
 #define ALOJAMIENTOS_H
 #include "anfitrion.h"
 class alojamientos {
@@ -18,7 +18,7 @@ public:
     void mostrarDatos();
 };
 
-
+*/
 
 
 

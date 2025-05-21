@@ -1,4 +1,4 @@
-#include "anfitrion.h"
+/*#include "anfitrion.h"
 #include <cstring>
 #include <iostream>
 
@@ -11,4 +11,4 @@ anfitrion(const char* doc, int ant, float punt) {
 }
 void mostrarDatos() {
     std::cout << "Anfitrión: " << documento << ", Antigüedad: " << antiguedad << ", Puntuación: " << puntuacion << std::endl;
-}
+}*/

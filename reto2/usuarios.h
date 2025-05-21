@@ -1,30 +1,25 @@
+
 #ifndef USUARIOS_H
 #define USUARIOS_H
-#include "reservas.h"
 
-class usuarios {
+#include <string>
+
+class Usuarios {
+private:
+    std::string documento;
+    std::string clave;
+
 public:
+    std::string nombre;
+    std::string tiempoPlataforma;
+    std::string puntuacion;
+    std::string id;
 
-    //modificar algunos a privados
-    char documento[20];
-    char clave[20];
-    int tiempoplat;
-    float puntuacion;
+    Usuarios();
+    Usuarios(const std::string& nombre, const std::string& documento, const std::string& clave,
+            const std::string& tiempo, const std::string& puntuacion, const std::string& id);
 
-    usuarios();
-    usuarios::usuarios(const char* doc, const char* pass, int tiempo, float punt);
-    void mostrarDatos();
+    void mostrar() const;
 };
 
-
-
-
-
-
-
-
-
-
-
 #endif
-

@@ -1,4 +1,4 @@
-#ifndef FECHA_H
+/*#ifndef FECHA_H
 #define FECHA_H
 
 class fecha
@@ -8,3 +8,4 @@ public:
 };
 
 #endif // FECHA
+*/

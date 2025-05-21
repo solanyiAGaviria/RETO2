@@ -1,4 +1,4 @@
-#ifndef FUNCIONES_H
+/*#ifndef FUNCIONES_H
 #define FUNCIONES_H
 
 int cantlineas(const* nombrearch);
@@ -7,3 +7,4 @@ int cantlineas(const* nombrearch);
 
 
 #endif // FUNCIONES_H
+*/

@@ -1,4 +1,4 @@
-#include "funciones.h"
+/*#include "funciones.h"
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -25,4 +25,4 @@ int cantlineas(const* string nombrearch){
     }
 
 
-
+*/

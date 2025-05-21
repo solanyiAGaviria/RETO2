@@ -1,4 +1,4 @@
-#include "alojamientos.h"
+/*#include "alojamientos.h"
 #include <cstring>
 #include <iostream>
 
@@ -19,3 +19,4 @@ alojamientos(const char* nom, const char* cod, const char* anfit, const char* de
 void mostrarDatos() {
     std::cout << "Alojamiento: " << nombre << ", Precio: " << precioNoche << " COP/noche" << std::endl;
 }
+*/
