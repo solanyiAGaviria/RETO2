@@ -1,22 +1,23 @@
-/*#ifndef ANFITRION_H
+#ifndef ANFITRION_H
 #define ANFITRION_H
 
+#include <string>
+
 class anfitrion {
+private:
+    std::string cedula;
+    std::string clave;
+    std::string* alojamientos;
+    int cantidadAlojamientos;
+
 public:
-    char documento[20];
-    int antiguedad;
-    float puntuacion;
+    int antiguedad_meses;
+    float calificacion;
 
-    anfitrion() {}
-    anfitrion(const char* doc, int ant, float punt) {
-        strcpy(documento, doc);
-        antiguedad = ant;
-        puntuacion = punt;
-    }
-    void mostrarDatos() {
-        std::cout << "Anfitrión: " << documento << ", Antigüedad: " << antiguedad << ", Puntuación: " << puntuacion << std::endl;
-    }
-};/*
+    anfitrion();
+    anfitrion(std::string ced, std::string cla, int antig, float calif, std::string* aloj, int cant);
+    ~anfitrion();
+    void mostrar() const;
+};
 
-
-#endif // ANFITRION_H
+#endif

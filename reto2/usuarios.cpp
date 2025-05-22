@@ -1,24 +1,35 @@
 #include "Usuarios.h"
+#include <sstream>
 #include <iostream>
 
-Usuarios::Usuarios() {}
+Usuarios::Usuarios() {
+    cedula = "";
+    clave = "";
+    calificacion = 0.0f;
+}
 
-Usuarios::Usuarios(const std::string& nom, const std::string& doc, const std::string& clv,
-                 const std::string& tiempo, const std::string& punt, const std::string& ident) {
-    nombre = nom;
-    documento = doc;
+Usuarios::Usuarios(const std::string& ced, const std::string& clv, float calif) {
+    cedula = ced;
     clave = clv;
-    tiempoPlataforma = tiempo;
-    puntuacion = punt;
-    id = ident;
+    calificacion = calif;
+}
+
+Usuarios* Usuarios::desdeLinea(const std::string& linea) {
+    std::stringstream ss(linea);
+    std::string ced, clv, califStr;
+    float calif;
+
+    std::getline(ss, ced, ';');
+    std::getline(ss, clv, ';');
+    std::getline(ss, califStr, ';');
+
+    calif = std::stof(califStr);
+
+    return new Usuarios(ced, clv, calif);
 }
 
 void Usuarios::mostrar() const {
-    std::cout << "Nombre: " << nombre << "\n";
-    std::cout << "Documento: " << documento << "\n";
-    std::cout << "Clave: " << clave << "\n";
-    std::cout << "Tiempo Plataforma: " << tiempoPlataforma << "\n";
-    std::cout << "Puntuación: " << puntuacion << "\n";
-    std::cout << "ID: " << id << "\n";
-    std::cout << "-------------------------\n";
+    std::cout << "Cédula: " << cedula
+              << " | Clave: " << clave
+              << " | Calificación: " << calificacion << std::endl;
 }

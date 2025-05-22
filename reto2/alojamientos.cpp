@@ -1,22 +1,22 @@
-/*#include "alojamientos.h"
-#include <cstring>
+#include "alojamientos.h"
+#include <sstream>
 #include <iostream>
 
-alojamientos() {}
+alojamiento::alojamiento() {}
 
-alojamientos(const char* nom, const char* cod, const char* anfit, const char* depto, const char* muni,
-             const char* tip, const char* dir, int precio, const char* amen) {
-    strcpy(nombre, nom);
-    strcpy(codigo, cod);
-    strcpy(anfitrion, anfit);
-    strcpy(departamento, depto);
-    strcpy(municipio, muni);
-    strcpy(tipo, tip);
-    strcpy(direccion, dir);
-    precioNoche = precio;
-    strcpy(amenidades, amen);
+alojamiento::alojamiento(string linea) {
+    stringstream ss(linea);
+    string campo;
+    getline(ss, id, ';');
+    getline(ss, nombre, ';');
+    getline(ss, departamento, ';');
+    getline(ss, municipio, ';');
+    getline(ss, tipo, ';');
+    getline(ss, direccion, ';');
+    getline(ss, precio_noche, ';');
+    getline(ss, amenidades);
 }
-void mostrarDatos() {
-    std::cout << "Alojamiento: " << nombre << ", Precio: " << precioNoche << " COP/noche" << std::endl;
+
+void alojamiento::mostrar() const {
+    cout << "ID: " << id << ", Nombre: " << nombre << ", Municipio: " << municipio << ", Precio: " << precio_noche << endl;
 }
-*/

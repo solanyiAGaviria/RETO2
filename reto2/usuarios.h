@@ -1,4 +1,3 @@
-
 #ifndef USUARIOS_H
 #define USUARIOS_H
 
@@ -6,20 +5,17 @@
 
 class Usuarios {
 private:
-    std::string documento;
+    std::string cedula;
     std::string clave;
+    float calificacion;
 
 public:
-    std::string nombre;
-    std::string tiempoPlataforma;
-    std::string puntuacion;
-    std::string id;
-
     Usuarios();
-    Usuarios(const std::string& nombre, const std::string& documento, const std::string& clave,
-            const std::string& tiempo, const std::string& puntuacion, const std::string& id);
+    Usuarios(const std::string& ced, const std::string& clv, float calif);
 
+    static Usuarios* desdeLinea(const std::string& linea);  // Método que convierte una línea en objeto
     void mostrar() const;
 };
 
 #endif
+
