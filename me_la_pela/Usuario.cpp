@@ -55,6 +55,7 @@ void Usuario::añadirReserva(Reservacion* r) {
     if (cantidadReservas < MAX_RESERVAS_USUARIO) {
         reservas[cantidadReservas++] = r;
     }
+
 }
 
 void Usuario::quitarReserva(const std::string& codigoReserva) {

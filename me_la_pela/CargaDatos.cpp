@@ -178,15 +178,30 @@ void CargaDatos::cargarReservaciones(const string& ruta) {
         Alojamiento* aloja = buscarAlojamientoPorId(id_aloja);
         Usuario* usuario = buscarUsuarioPorCedula(cedula_usuario);
 
-        if (aloja && usuario) {
-            aloja->añadirReserva(reserva);
-            usuario->añadirReserva(reserva);
-        }
+        if (aloja) aloja->añadirReserva(reserva);
+        if (usuario) usuario->añadirReserva(reserva);
 
 
         reservas[totalReservas++] = reserva;
     }
     file.close();
+
+    // Verificación cruzada, discutirlo con sol.
+    for (int i = 0; i < totalAlojamientos; i++) {
+        if (!alojamientos[i]->getAnfitrion()) {
+            cerr << "Advertencia: El alojamiento ID " << alojamientos[i]->getId()
+            << " no tiene anfitrión asignado.\n";
+        }
+    }
+
+    for (int i = 0; i < totalReservas; i++) {
+        Usuario* u = buscarUsuarioPorCedula(reservas[i]->getCedulaUsuario());
+        Alojamiento* a = buscarAlojamientoPorId(reservas[i]->getIdAlojamiento());
+        if (!u || !a) {
+            cerr << "Advertencia: La reserva " << reservas[i]->getCodigo()
+            << " no tiene usuario o alojamiento válido.\n";
+        }
+    }
 }
 
 Alojamiento* CargaDatos::buscarAlojamientoPorId(int id) {
