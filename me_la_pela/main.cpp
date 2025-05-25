@@ -8,13 +8,13 @@ using namespace std;
 void menuUsuario(CargaDatos& sistema, Usuario* usuario) {
     int opcion;
     do {
-        cout << "\n--- Menú Usuario ---\n";
+        cout << "\n--- Menu Usuario ---\n";
         cout << "1. Reservar alojamiento con filtros\n";
-        cout << "2. Reservar por código de alojamiento\n";
+        cout << "2. Reservar por codigo de alojamiento\n";
         cout << "3. Mostrar mis reservaciones\n";
-        cout << "4. Anular una reservación\n";
+        cout << "4. Anular una reservacion\n";
         cout << "5. Salir\n";
-        cout << "Opción: ";
+        cout << "Opcion: ";
         cin >> opcion;
 
         switch (opcion) {
@@ -31,34 +31,42 @@ void menuUsuario(CargaDatos& sistema, Usuario* usuario) {
             sistema.anularReserva(usuario);
             break;
         case 5:
-            cout << "Saliendo del menú de usuario...\n";
+            cout << "Saliendo del menu de usuario...\n";
             break;
         default:
-            cout << "Opción inválida. Intente de nuevo.\n";
+            cout << "Opcion invalida. Intente de nuevo.\n";
         }
     } while (opcion != 5);
 }
 
-void menuAnfitrion(Anfitrion* anfitrion) {
+void menuAnfitrion(CargaDatos& sistema, Anfitrion* anfitrion) {
     int opcion;
     do {
-        cout << "\n--- Menú Anfitrión ---\n";
-        cout << "1. Mostrar características\n";
-        cout << "2. Salir\n";
-        cout << "Opción: ";
+        cout << "\n--- Menu Anfitrion ---\n";
+        cout << "1. Consultar reservaciones\n";
+        cout << "2. Eliminar reservacion\n";
+        cout << "3. Actualizar historico\n";
+        cout << "4. Salir\n";
+        cout << "Opcion: ";
         cin >> opcion;
 
         switch (opcion) {
         case 1:
-            anfitrion->mostrarCaracteristicas();
+            sistema.consultarReservacionesAnfitrion(anfitrion);
             break;
         case 2:
-            cout << "Saliendo del menú de anfitrión...\n";
+            sistema.eliminarReservacionAnfitrion(anfitrion);
+            break;
+        case 3:
+            sistema.actualizarHistorico(anfitrion);
+            break;
+        case 4:
+            cout << "Saliendo del menu de anfitrion...\n";
             break;
         default:
-            cout << "Opción inválida. Intente de nuevo.\n";
+            cout << "Opcion invalida. Intente de nuevo.\n";
         }
-    } while (opcion != 2);
+    } while (opcion != 4);
 }
 
 void menuPrincipal(CargaDatos& sistema) {
@@ -67,18 +75,18 @@ void menuPrincipal(CargaDatos& sistema) {
     int opcion;
 
     cout << "===== Bienvenido a UdeAStay =====\n";
-    cout << "1. Iniciar sesión\n";
+    cout << "1. Iniciar sesion\n";
     cout << "2. Salir\n";
-    cout << "Seleccione una opción: ";
+    cout << "Seleccione una opcion: ";
     cin >> opcion;
 
     if (opcion == 2) return;
 
     try {
-        cout << "Ingrese su cédula: ";
+        cout << "Ingrese su cedula: ";
         cin >> cedulaStr;
         if (cedulaStr.length() < 7 || cedulaStr.length() > 10)
-            throw invalid_argument("La cédula debe tener entre 7 y 10 dígitos.");
+            throw invalid_argument("La cedula debe tener entre 7 y 10 digitos.");
         cedula = stol(cedulaStr);
 
         cout << "Ingrese su clave: ";
@@ -88,8 +96,8 @@ void menuPrincipal(CargaDatos& sistema) {
             Anfitrion* anfitrion = sistema.buscarAnfitrionPorCedula(cedula);
             if (anfitrion) {
                 if (anfitrion->getClave() == clave) {
-                    cout << "\nIngreso exitoso como ANFITRIÓN\n";
-                    menuAnfitrion(anfitrion);
+                    cout << "\nIngreso exitoso como ANFITRION\n";
+                    menuAnfitrion(sistema, anfitrion);
                     return;
                 } else {
                     throw runtime_error("Problema de credenciales.");
@@ -97,7 +105,6 @@ void menuPrincipal(CargaDatos& sistema) {
             } else {
                 throw runtime_error("Usuario no encontrado.");
             }
-
         } else if (clave.length() == 7) {
             Usuario* usuario = sistema.buscarUsuarioPorCedula(cedula);
             if (usuario) {
@@ -111,16 +118,14 @@ void menuPrincipal(CargaDatos& sistema) {
             } else {
                 throw runtime_error("Usuario no encontrado.");
             }
-
         } else {
-            throw runtime_error("Longitud de clave no válida.");
+            throw runtime_error("Longitud de clave no valida.");
         }
 
     } catch (const exception& e) {
         cerr << "Error: " << e.what() << "\n";
     }
 }
-
 int main() {
     CargaDatos sistema;
 

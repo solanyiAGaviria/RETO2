@@ -54,10 +54,13 @@ public:
     Anfitrion* buscarAnfitrionPorCedula(long cedula);
     void reservarConFiltros(Usuario* usuario);
 
-
-
     void reservarPorCodigo(Usuario* usuario);
     void anularReserva(Usuario* usuario);
+    // Funcionalidade anfritrion
+    void consultarReservacionesAnfitrion(Anfitrion* anfitrion);
+    void eliminarReservacionAnfitrion(Anfitrion* anfitrion);
+    void actualizarHistorico(Anfitrion* anfitrion);
+
 };
 
 #endif // CARGADATOS_H
