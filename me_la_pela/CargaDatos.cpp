@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -205,17 +206,277 @@ void CargaDatos::cargarReservaciones(const string& ruta) {
 }
 
 Alojamiento* CargaDatos::buscarAlojamientoPorId(int id) {
-    for (int i = 0; i < totalAlojamientos; i++) {
-        if (alojamientos[i]->getId() == id)
-            return alojamientos[i];
+    int izquierda = 0;
+    int derecha = totalAlojamientos - 1;
+
+    while (izquierda <= derecha) {
+        int medio = (izquierda + derecha) / 2;
+        int idActual = alojamientos[medio]->getId();
+
+        if (idActual == id)
+            return alojamientos[medio];
+        else if (idActual < id)
+            izquierda = medio + 1;
+        else
+            derecha = medio - 1;
     }
-    return nullptr;
+    return nullptr; // No encontrado
 }
 
 Usuario* CargaDatos::buscarUsuarioPorCedula(long cedula) {
-    for (int i = 0; i < totalUsuarios; i++) {
-        if (usuarios[i]->getCedula() == cedula)
-            return usuarios[i];
+    int izquierda = 0;
+    int derecha = totalUsuarios - 1;
+
+    while (izquierda <= derecha) {
+        int medio = (izquierda + derecha) / 2;
+        long cedActual = usuarios[medio]->getCedula();
+
+        if (cedActual == cedula)
+            return usuarios[medio];
+        else if (cedActual < cedula)
+            izquierda = medio + 1;
+        else
+            derecha = medio - 1;
     }
-    return nullptr;
+    return nullptr; // No encontrado
 }
+
+Anfitrion* CargaDatos::buscarAnfitrionPorCedula(long cedula) {
+    int izquierda = 0;
+    int derecha = totalAnfitriones - 1;
+    while (izquierda <= derecha) {
+        int medio = (izquierda + derecha) / 2;
+        long cedActual = anfitriones[medio]->getCedula();
+
+        if (cedActual == cedula)
+            return anfitriones[medio];
+        else if (cedActual < cedula)
+            izquierda = medio + 1;
+        else
+            derecha = medio - 1;
+    }
+    return nullptr; // No encontrado
+}
+
+void CargaDatos::incrementarTotalReservas() {
+    totalReservas++;
+}
+
+void CargaDatos::reservarPorCodigo(Usuario* usuario) {
+    int id;
+    cout << "Ingrese el ID del alojamiento: ";
+    cin >> id;
+
+    Alojamiento* alojamiento = buscarAlojamientoPorId(id);
+    if (!alojamiento) {
+        cout << "Alojamiento no encontrado.\n";
+        return;
+    }
+
+    alojamiento->mostrarAlojamiento();
+
+    Fecha hoy = Fecha::fechaActual(); // Asegúrate de tener este método implementado
+    alojamiento->fechasDisponibles(hoy);
+
+    // Validar fecha de inicio y disponibilidad
+    Fecha inicio, fin;
+    int noches;
+    bool fechaOk = false;
+
+    do {
+        cout << "Ingrese la fecha de inicio (dd mm aaaa): ";
+        int d, m, a;
+        cin >> d >> m >> a;
+        inicio = Fecha(d, m, a);
+
+        if (!inicio.fechaValida()) {
+            cout << "Fecha invalida. Intente nuevamente.\n";
+            continue;
+        }
+
+        cout << "Cantidad de noches: ";
+        cin >> noches;
+        if (noches < 1) {
+            cout << "Debe reservar al menos una noche.\n";
+            continue;
+        }
+
+        fin = inicio.sumarDias(noches - 1);
+
+        // Validar disponibilidad
+        bool disponible = true;
+        for (int i = 0; i < noches; i++) {
+            Fecha f = inicio.sumarDias(i);
+            if (!alojamiento->estaDisponible(f, hoy)) {
+                disponible = false;
+                break;
+            }
+        }
+
+        if (!disponible) {
+            cout << "El rango de fechas no esta completamente disponible. Intente con otra fecha.\n";
+        } else {
+            fechaOk = true;
+        }
+
+    } while (!fechaOk);
+
+    // Método de pago
+    string metodo;
+    int metodoOpcion;
+    do {
+        cout << "Método de pago (1 = PSE, 2 = TCredito): ";
+        cin >> metodoOpcion;
+        if (metodoOpcion == 1) metodo = "PSE";
+        else if (metodoOpcion == 2) metodo = "TCredito";
+        else cout << "Opción inválida.\n";
+    } while (metodoOpcion != 1 && metodoOpcion != 2);
+
+    // Fecha de pago validada
+    Fecha pago;
+    bool pagoOk = false;
+    do {
+        cout << "Fecha de pago (dd mm aaaa): ";
+        int d, m, a;
+        cin >> d >> m >> a;
+        pago = Fecha(d, m, a);
+
+        if (!pago.fechaValida()) {
+            cout << "Fecha de pago inválida. Intente nuevamente.\n";
+        } else {
+            pagoOk = true;
+        }
+    } while (!pagoOk);
+
+    // Crear y registrar la reservación
+    stringstream ss;
+    ss << "RSV" << setfill('0') << setw(4) << totalReservas + 1;
+    string codigo = ss.str();
+
+    Reservacion* r = new Reservacion(codigo, usuario->getCedula(), id, pago, metodo, inicio, fin, "");
+    usuario->añadirReserva(r);
+    alojamiento->añadirReserva(r);
+    reservas[totalReservas++] = r;
+
+    cout << "\nReservacion creada exitosamente:\n";
+    r->mostrarComprobante();
+}
+
+
+void CargaDatos::anularReserva(Usuario* usuario) {
+    cout << "Ingrese el código de la reservación que desea anular: ";
+    string codigo;
+    cin >> codigo;
+
+    for (int i = 0; i < totalReservas; i++) {
+        if (reservas[i] && reservas[i]->getCodigo() == codigo && reservas[i]->getCedulaUsuario() == usuario->getCedula()) {
+            int idAloj = reservas[i]->getIdAlojamiento();
+            Alojamiento* aloja = buscarAlojamientoPorId(idAloj);
+            if (aloja) aloja->quitarReserva(codigo);
+            usuario->quitarReserva(codigo);
+            delete reservas[i];
+            reservas[i] = new Reservacion("GENERIC");
+            cout << "Reservación anulada correctamente.\n";
+            return;
+        }
+    }
+    cout << "No se encontró una reservación válida con ese código.\n";
+}
+
+void CargaDatos::reservarConFiltros(Usuario* usuario) {
+    string municipio;
+    int d, m, a;
+    int noches;
+    int precioMax = 150000;  // valor por defecto
+    float califMin = 0.0;    // sin filtro si queda en cero
+
+    cout << "Ingrese el municipio deseado: ";
+    cin.ignore(); // Limpiar buffer
+    getline(cin, municipio);
+
+    cout << "Ingrese la fecha de inicio (dd mm aaaa): ";
+    cin >> d >> m >> a;
+    Fecha fechaInicio(d, m, a);
+
+    cout << "Cantidad de noches: ";
+    cin >> noches;
+
+    char usarPrecio, usarCalif;
+    cout << "Desea filtrar por precio maximo? (s/n): ";
+    cin >> usarPrecio;
+    if (usarPrecio == 's' || usarPrecio == 'S') {
+        cout << "Ingrese el precio maximo por noche (entre 25000 y 150000): ";
+        cin >> precioMax;
+    }
+
+    cout << "Desea filtrar por calificacion minima del anfitrion? (s/n): ";
+    cin >> usarCalif;
+    if (usarCalif == 's' || usarCalif == 'S') {
+        cout << "Ingrese la calificacion minima del anfitrion: ";
+        cin >> califMin;
+    }
+
+    // Mostrar alojamientos que cumplen los filtros
+    cout << "\n--- Resultados encontrados ---\n";
+    int coincidencias = 0;
+    Alojamiento* candidatos[MAX_ALOJAMIENTOS];
+
+    for (int i = 0; i < totalAlojamientos; i++) {
+        Alojamiento* alo = alojamientos[i];
+        Anfitrion* anf = alo->getAnfitrion();
+
+        if (alo->getMunicipio() != municipio) continue;
+        if (alo->getPrecioNoche() > precioMax) continue;
+        if (anf && anf->getCalificacion() < califMin) continue;
+
+        cout << "\nOpción #" << (coincidencias + 1) << ":\n";
+        alo->mostrarAlojamiento();
+        candidatos[coincidencias++] = alo;
+    }
+
+    if (coincidencias == 0) {
+        cout << "No se encontraron alojamientos con los filtros seleccionados.\n";
+        return;
+    }
+
+    int opcion;
+    do {
+        cout << "\nSeleccione el número del alojamiento a reservar (1-" << coincidencias << "): ";
+        cin >> opcion;
+    } while (opcion < 1 || opcion > coincidencias);
+
+    Alojamiento* seleccionado = candidatos[opcion - 1];
+
+    // Método de pago
+    string metodo;
+    int metodoOpcion;
+    do {
+        cout << "Método de pago (1 = PSE, 2 = TCredito): ";
+        cin >> metodoOpcion;
+        if (metodoOpcion == 1) metodo = "PSE";
+        else if (metodoOpcion == 2) metodo = "TCredito";
+        else cout << "Opción inválida.\n";
+    } while (metodoOpcion != 1 && metodoOpcion != 2);
+
+    // Fecha de pago
+    Fecha fechaPago;
+    cout << "Ingrese la fecha de pago (dd mm aaaa): ";
+    cin >> d >> m >> a;
+    fechaPago = Fecha(d, m, a);
+
+    Fecha fechaFin = fechaInicio.sumarDias(noches);
+
+    stringstream ss;
+    ss << "RSV" << setfill('0') << setw(4) << totalReservas + 1;
+    string codigo = ss.str();
+
+    Reservacion* r = new Reservacion(codigo, usuario->getCedula(), seleccionado->getId(), fechaPago, metodo, fechaInicio, fechaFin, "");
+    usuario->añadirReserva(r);
+    seleccionado->añadirReserva(r);
+    reservas[totalReservas] = r;
+    incrementarTotalReservas();
+
+    cout << "\nReservación realizada con éxito:\n";
+    r->mostrarComprobante();
+}
+

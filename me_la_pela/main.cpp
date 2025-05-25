@@ -5,26 +5,38 @@
 
 using namespace std;
 
-void menuUsuario(Usuario* usuario) {
+void menuUsuario(CargaDatos& sistema, Usuario* usuario) {
     int opcion;
     do {
         cout << "\n--- Menú Usuario ---\n";
-        cout << "1. Mostrar reservas\n";
-        cout << "2. Salir\n";
+        cout << "1. Reservar alojamiento con filtros\n";
+        cout << "2. Reservar por código de alojamiento\n";
+        cout << "3. Mostrar mis reservaciones\n";
+        cout << "4. Anular una reservación\n";
+        cout << "5. Salir\n";
         cout << "Opción: ";
         cin >> opcion;
 
         switch (opcion) {
         case 1:
-            usuario->mostrarReservas();
+            sistema.reservarConFiltros(usuario);
             break;
         case 2:
+            sistema.reservarPorCodigo(usuario);
+            break;
+        case 3:
+            usuario->mostrarReservas();
+            break;
+        case 4:
+            sistema.anularReserva(usuario);
+            break;
+        case 5:
             cout << "Saliendo del menú de usuario...\n";
             break;
         default:
             cout << "Opción inválida. Intente de nuevo.\n";
         }
-    } while (opcion != 2);
+    } while (opcion != 5);
 }
 
 void menuAnfitrion(Anfitrion* anfitrion) {
@@ -73,35 +85,33 @@ void menuPrincipal(CargaDatos& sistema) {
         cin >> clave;
 
         if (clave.length() == 10) {
-            Anfitrion** anfitriones = sistema.getAnfitriones();
-            int total = sistema.getTotalAnfitriones();
-            for (int i = 0; i < total; i++) {
-                if (anfitriones[i]->getCedula() == cedula) {
-                    if (anfitriones[i]->getClave() == clave) {
-                        cout << "\nIngreso exitoso como ANFITRIÓN\n";
-                        menuAnfitrion(anfitriones[i]);
-                        return;
-                    } else {
-                        throw runtime_error("Problema de credenciales.");
-                    }
+            Anfitrion* anfitrion = sistema.buscarAnfitrionPorCedula(cedula);
+            if (anfitrion) {
+                if (anfitrion->getClave() == clave) {
+                    cout << "\nIngreso exitoso como ANFITRIÓN\n";
+                    menuAnfitrion(anfitrion);
+                    return;
+                } else {
+                    throw runtime_error("Problema de credenciales.");
                 }
+            } else {
+                throw runtime_error("Usuario no encontrado.");
             }
-            throw runtime_error("Usuario no encontrado.");
+
         } else if (clave.length() == 7) {
-            Usuario** usuarios = sistema.getUsuarios();
-            int total = sistema.getTotalUsuarios();
-            for (int i = 0; i < total; i++) {
-                if (usuarios[i]->getCedula() == cedula) {
-                    if (usuarios[i]->getClave() == clave) {
-                        cout << "\nIngreso exitoso como USUARIO\n";
-                        menuUsuario(usuarios[i]);
-                        return;
-                    } else {
-                        throw runtime_error("Problema de credenciales.");
-                    }
+            Usuario* usuario = sistema.buscarUsuarioPorCedula(cedula);
+            if (usuario) {
+                if (usuario->getClave() == clave) {
+                    cout << "\nIngreso exitoso como USUARIO\n";
+                    menuUsuario(sistema, usuario);
+                    return;
+                } else {
+                    throw runtime_error("Problema de credenciales.");
                 }
+            } else {
+                throw runtime_error("Usuario no encontrado.");
             }
-            throw runtime_error("Usuario no encontrado.");
+
         } else {
             throw runtime_error("Longitud de clave no válida.");
         }

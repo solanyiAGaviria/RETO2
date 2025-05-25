@@ -1,6 +1,7 @@
 #include "Fecha.h"
 #include <iostream>
 #include <string>
+#include <ctime>
 
 using namespace std;
 
@@ -59,6 +60,13 @@ bool Fecha::operator<(const Fecha &otra) const {
 bool Fecha::operator>(const Fecha &otra) const {
     return otra < *this;
 }
+bool Fecha::operator<=(const Fecha& otra) const {
+    return (*this < otra) || (*this == otra);
+}
+
+bool Fecha::operator>=(const Fecha& otra) const {
+    return (*this > otra) || (*this == otra);
+}
 
 bool Fecha::operator==(const Fecha &otra) const {
     return (dia == otra.dia && mes == otra.mes && anio == otra.anio);
@@ -105,6 +113,7 @@ void Fecha::mostrarDiaMes() const {
     cout << diasSemana[diaSemana] << ", " << dia << " de " << meses[mes - 1] << " del " << anio << endl;
 }
 
+
 // Suma días a la fecha y retorna la nueva fecha
 Fecha Fecha::sumarDias(int diasSumar) const {
     int d = dia, m = mes, a = anio;
@@ -130,4 +139,9 @@ Fecha Fecha::sumarDias(int diasSumar) const {
     }
 
     return Fecha(d, m, a);
+}
+Fecha Fecha::fechaActual() {
+    time_t t = time(0);
+    tm* now = localtime(&t);
+    return Fecha(now->tm_mday, now->tm_mon + 1, now->tm_year + 1900);
 }

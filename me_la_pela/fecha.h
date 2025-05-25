@@ -22,12 +22,16 @@ public:
     bool operator<(const Fecha &otra) const;
     bool operator>(const Fecha &otra) const;
     bool operator==(const Fecha &otra) const;
+    bool operator<=(const Fecha& otra) const;
+    bool operator>=(const Fecha& otra) const;
+
     Fecha& operator=(const Fecha &otra);
 
     bool fechaValida() const;
     bool compararFechas(const Fecha &inicio, const Fecha &fin) const;
     void mostrarDiaMes() const;
     Fecha sumarDias(int dias) const;
+    static Fecha fechaActual();
 };
 
 #endif

@@ -1,4 +1,3 @@
-// CargaDatos.h
 #ifndef CARGADATOS_H
 #define CARGADATOS_H
 
@@ -48,8 +47,17 @@ public:
     Reservacion** getReservas();
     int getTotalReservas() const;
 
+    void incrementarTotalReservas();
+
     Alojamiento* buscarAlojamientoPorId(int id);
     Usuario* buscarUsuarioPorCedula(long cedula);
+    Anfitrion* buscarAnfitrionPorCedula(long cedula);
+    void reservarConFiltros(Usuario* usuario);
+
+
+
+    void reservarPorCodigo(Usuario* usuario);
+    void anularReserva(Usuario* usuario);
 };
 
 #endif // CARGADATOS_H

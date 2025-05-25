@@ -59,6 +59,7 @@ public:
     void mostrarAlojamiento() const;
     void misReservas() const;
     void fechasDisponibles(const Fecha& hoy) const;
+    bool estaDisponible(const Fecha& f, const Fecha& hoy) const;
 
     Reservacion** getReservas();
     int getCantidadReservas() const;

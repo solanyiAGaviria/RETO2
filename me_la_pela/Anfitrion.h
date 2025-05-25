@@ -4,7 +4,7 @@
 #include <string>
 #include "Alojamiento.h"
 
-#define MAX_ALOJAMIENTOS 50
+#define MAX_ALOJAMIENTOS 100
 
 class Alojamiento; // Declaración adelantada
 

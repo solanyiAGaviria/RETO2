@@ -120,8 +120,79 @@ void Alojamiento::misReservas() const {
 }
 
 void Alojamiento::fechasDisponibles(const Fecha& hoy) const {
-    std::cout << "Fechas disponibles desde hoy hasta 12 meses después (pendiente implementar lógica de disponibilidad real).\n";
+    Fecha inicio = hoy;
+    Fecha finLimite = hoy.sumarDias(364);
+    const int maxDias = 365;
+    bool ocupado[maxDias] = {false};
+
+    // Marcar días ocupados por reservas
+    for (int i = 0; i < cantidadReservas; i++) {
+        if (reservas[i] && !reservas[i]->esGenerica()) {
+            Fecha ini = reservas[i]->getFechaInicio();
+            Fecha fin = reservas[i]->getFechaFin();
+            for (int d = 0; d < maxDias; d++) {
+                Fecha dia = hoy.sumarDias(d);
+                if (dia >= ini && dia <= fin)
+                    ocupado[d] = true;
+            }
+        }
+    }
+
+    // Encabezado
+    std::cout << "\n--- Fechas disponibles ---" << std::endl;
+    std::cout << "Desde ";
+    inicio.mostrarDiaMes();  // esta imprime con endl
+    std::cout << "Hasta ";
+    finLimite.mostrarDiaMes();
+
+    // Mostrar rangos disponibles
+    bool enBloque = false;
+    Fecha inicioBloque;
+
+    for (int i = 0; i < maxDias; i++) {
+        if (!ocupado[i]) {
+            if (!enBloque) {
+                enBloque = true;
+                inicioBloque = hoy.sumarDias(i);
+            }
+        } else {
+            if (enBloque) {
+                Fecha finBloque = hoy.sumarDias(i - 1);
+                std::cout << "\nDisponible del ";
+                inicioBloque.mostrarDiaMes();
+                std::cout << "al ";
+                finBloque.mostrarDiaMes();
+                enBloque = false;
+            }
+        }
+    }
+
+    // Finaliza último bloque si termina libre
+    if (enBloque) {
+        Fecha finBloque = hoy.sumarDias(maxDias - 1);
+        std::cout << "\nDisponible del ";
+        inicioBloque.mostrarDiaMes();
+        std::cout << "al ";
+        finBloque.mostrarDiaMes();
+    }
 }
+
+bool Alojamiento::estaDisponible(const Fecha& f, const Fecha& hoy) const {
+    // Fuera de rango de fechas futuras
+    if (f < hoy || f > hoy.sumarDias(364)) return false;
+
+    // Revisa si está ocupada por una reserva
+    for (int i = 0; i < cantidadReservas; i++) {
+        if (reservas[i] && !reservas[i]->esGenerica()) {
+            Fecha ini = reservas[i]->getFechaInicio();
+            Fecha fin = reservas[i]->getFechaFin();
+            if (f >= ini && f <= fin)
+                return false;
+        }
+    }
+    return true;
+}
+
 
 Reservacion** Alojamiento::getReservas() {
     return reservas;
