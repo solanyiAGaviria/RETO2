@@ -201,3 +201,10 @@ Reservacion** Alojamiento::getReservas() {
 int Alojamiento::getCantidadReservas() const {
     return cantidadReservas;
 }
+
+Reservacion* Alojamiento::getReserva(int index) const {
+    if (index >= 0 && index < cantidadReservas) {
+        return reservas[index];
+    }
+    return nullptr;
+}

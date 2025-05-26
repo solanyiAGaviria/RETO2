@@ -50,8 +50,8 @@ public:
     void incrementarTotalReservas();
 
     Alojamiento* buscarAlojamientoPorId(int id);
-    Usuario* buscarUsuarioPorCedula(long cedula);
-    Anfitrion* buscarAnfitrionPorCedula(long cedula);
+    Usuario* buscarUsuarioPorCedula(int cedula);
+    Anfitrion* buscarAnfitrionPorCedula(int cedula);
     void reservarConFiltros(Usuario* usuario);
 
     void reservarPorCodigo(Usuario* usuario);

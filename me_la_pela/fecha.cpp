@@ -145,3 +145,10 @@ Fecha Fecha::fechaActual() {
     tm* now = localtime(&t);
     return Fecha(now->tm_mday, now->tm_mon + 1, now->tm_year + 1900);
 }
+string Fecha::toString() const {
+    char buffer[11];  // dd/mm/aaaa + '\0'
+    sprintf(buffer, "%02d/%02d/%04d", dia, mes, anio);
+    return std::string(buffer);
+}
+
+

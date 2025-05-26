@@ -38,6 +38,7 @@ public:
     std::string getDireccion() const;
     int getPrecioNoche() const;
     std::string getAmenidades() const;
+    Reservacion* getReserva(int index) const;
 
     // Setters
     void setId(int id);

@@ -1,7 +1,7 @@
 // Fecha.h
 #ifndef FECHA_H
 #define FECHA_H
-
+#include <string>
 class Fecha {
 private:
     int dia, mes, anio;
@@ -26,12 +26,14 @@ public:
     bool operator>=(const Fecha& otra) const;
 
     Fecha& operator=(const Fecha &otra);
-
+    std::string toString() const;
     bool fechaValida() const;
     bool compararFechas(const Fecha &inicio, const Fecha &fin) const;
     void mostrarDiaMes() const;
     Fecha sumarDias(int dias) const;
     static Fecha fechaActual();
+
+
 };
 
 #endif

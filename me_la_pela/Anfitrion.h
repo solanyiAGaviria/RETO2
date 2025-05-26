@@ -47,6 +47,7 @@ public:
     void añadirAlojamiento(Alojamiento* a);
     void mostrarAnfitrion() const;
     void mostrarCaracteristicas() const;
+    Alojamiento* getAlojamiento(int index) const;
 };
 
 #endif // ANFITRION_H

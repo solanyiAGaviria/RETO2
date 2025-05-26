@@ -223,13 +223,13 @@ Alojamiento* CargaDatos::buscarAlojamientoPorId(int id) {
     return nullptr; // No encontrado
 }
 
-Usuario* CargaDatos::buscarUsuarioPorCedula(long cedula) {
+Usuario* CargaDatos::buscarUsuarioPorCedula(int cedula) {
     int izquierda = 0;
     int derecha = totalUsuarios - 1;
 
     while (izquierda <= derecha) {
         int medio = (izquierda + derecha) / 2;
-        long cedActual = usuarios[medio]->getCedula();
+        int cedActual = usuarios[medio]->getCedula();
 
         if (cedActual == cedula)
             return usuarios[medio];
@@ -241,12 +241,12 @@ Usuario* CargaDatos::buscarUsuarioPorCedula(long cedula) {
     return nullptr; // No encontrado
 }
 
-Anfitrion* CargaDatos::buscarAnfitrionPorCedula(long cedula) {
+Anfitrion* CargaDatos::buscarAnfitrionPorCedula(int cedula) {
     int izquierda = 0;
     int derecha = totalAnfitriones - 1;
     while (izquierda <= derecha) {
         int medio = (izquierda + derecha) / 2;
-        long cedActual = anfitriones[medio]->getCedula();
+        int cedActual = anfitriones[medio]->getCedula();
 
         if (cedActual == cedula)
             return anfitriones[medio];
@@ -479,4 +479,210 @@ void CargaDatos::reservarConFiltros(Usuario* usuario) {
     cout << "\nReservación realizada con éxito:\n";
     r->mostrarComprobante();
 }
+
+// Funcionalidades del menu de anfitrion
+void CargaDatos::consultarReservacionesAnfitrion(Anfitrion* anfitrion) {
+    cout << "\n--- Consultar reservaciones ---\n";
+
+    Fecha hoy = Fecha::fechaActual();
+    Fecha inicio, fin;
+    bool rangoValido = false;
+
+    do {
+        cout << "Ingrese la fecha de inicio del rango (dd mm aaaa): ";
+        int d, m, a;
+        cin >> d >> m >> a;
+        inicio = Fecha(d, m, a);
+        if (!inicio.fechaValida()) {
+            cout << "Fecha de inicio invalida.\n";
+            continue;
+        }
+        if (inicio < hoy) {
+            cout << "La fecha de inicio no puede ser menor a hoy.\n";
+            continue;
+        }
+
+        cout << "Ingrese la fecha final del rango (dd mm aaaa): ";
+        cin >> d >> m >> a;
+        fin = Fecha(d, m, a);
+        if (!fin.fechaValida()) {
+            cout << "Fecha final invalida.\n";
+            continue;
+        }
+        if (fin < inicio) {
+            cout << "La fecha final no puede ser menor que la de inicio.\n";
+            continue;
+        }
+
+        rangoValido = true;
+    } while (!rangoValido);
+
+    // Recorremos alojamientos del anfitrion
+    bool hayReservas = false;
+    for (int i = 0; i < anfitrion->getCantidadAlojamientos(); i++) {
+        Alojamiento* aloja = anfitrion->getAlojamiento(i);
+        if (!aloja) continue;
+
+        cout << "\nAlojamiento: " << aloja->getNombre() << " (ID: " << aloja->getId() << ")\n";
+
+        bool alojaTiene = false;
+        for (int j = 0; j < aloja->getCantidadReservas(); j++) {
+            Reservacion* r = aloja->getReserva(j);
+            if (r && !r->esGenerica()) {
+                Fecha iniR = r->getFechaInicio();
+                Fecha finR = r->getFechaFin();
+
+                // Verificar si se traslapan con el rango solicitado
+                if ((iniR <= fin && finR >= inicio)) {
+                    cout << "- Codigo: " << r->getCodigo() << "\n";
+                    cout << "  Inicio: "; iniR.mostrarDiaMes();
+                    cout << "  Fin: ";    finR.mostrarDiaMes();
+                    cout << endl;
+                    alojaTiene = true;
+                    hayReservas = true;
+                }
+            }
+        }
+
+        if (!alojaTiene) {
+            cout << "  No hay reservaciones en el rango seleccionado.\n";
+        }
+    }
+
+    if (!hayReservas) {
+        cout << "\nNo se encontraron reservaciones para ningun alojamiento en el rango seleccionado.\n";
+    }
+}
+
+
+void CargaDatos::eliminarReservacionAnfitrion(Anfitrion* anfitrion) {
+    cout << "\n--- Eliminar reservacion ---\n";
+    cout << "Ingrese el codigo de la reservacion a eliminar: ";
+    string codigo;
+    cin >> codigo;
+
+    // Buscar la reserva
+    Reservacion* reserva = nullptr;
+    int index = -1;
+    for (int i = 0; i < totalReservas; i++) {
+        if (reservas[i] && reservas[i]->getCodigo() == codigo && !reservas[i]->esGenerica()) {
+            reserva = reservas[i];
+            index = i;
+            break;
+        }
+    }
+
+    if (!reserva) {
+        cout << "No se encontro una reservacion con ese codigo.\n";
+        return;
+    }
+
+    // Verificar si el anfitrion tiene ese alojamiento
+    int idAloj = reserva->getIdAlojamiento();
+    Alojamiento* aloja = buscarAlojamientoPorId(idAloj);
+
+    bool pertenece = false;
+    for (int i = 0; i < anfitrion->getCantidadAlojamientos(); i++) {
+        if (anfitrion->getAlojamiento(i)->getId() == idAloj) {
+            pertenece = true;
+            break;
+        }
+    }
+
+    if (!pertenece || !aloja) {
+        cout << "La reservacion no pertenece a ninguno de sus alojamientos.\n";
+        return;
+    }
+
+    // Buscar el usuario para quitarle la reserva
+    Usuario* usuario = buscarUsuarioPorCedula(reserva->getCedulaUsuario());
+    if (usuario) usuario->quitarReserva(codigo);
+    aloja->quitarReserva(codigo);
+
+    delete reservas[index];
+    reservas[index] = new Reservacion("GENERIC");
+
+    cout << "Reservacion eliminada correctamente.\n";
+}
+
+
+void CargaDatos::actualizarHistorico(Anfitrion* anfitrion) {
+    cout << "\n--- Actualizar historico ---\n";
+
+    Fecha hoy = Fecha::fechaActual();
+    Fecha corte;
+    int d, m, a;
+
+    // Solicitar y validar fecha de corte
+    bool valida = false;
+    do {
+        cout << "Ingrese la fecha de corte (dd mm aaaa): ";
+        cin >> d >> m >> a;
+        corte = Fecha(d, m, a);
+
+        if (!corte.fechaValida()) {
+            cout << "Fecha invalida. Intente de nuevo.\n";
+        } else if (corte < hoy) {
+            cout << "La fecha de corte no puede ser menor al dia actual.\n";
+        } else if (corte > hoy.sumarDias(364)) {
+            cout << "La fecha de corte no puede superar 12 meses desde hoy.\n";
+        } else {
+            valida = true;
+        }
+    } while (!valida);
+
+    ofstream out("historico.txt", ios::app);
+    if (!out.is_open()) {
+        cerr << "No se pudo abrir el archivo historico.txt\n";
+        return;
+    }
+
+    int eliminadas = 0;
+
+    // Recorrer alojamientos del anfitrion
+    for (int i = 0; i < anfitrion->getCantidadAlojamientos(); i++) {
+        Alojamiento* aloja = anfitrion->getAlojamiento(i);
+        if (!aloja) continue;
+
+        for (int j = 0; j < aloja->getCantidadReservas(); j++) {
+            Reservacion* r = aloja->getReserva(j);
+            if (!r || r->esGenerica()) continue;
+
+            if (r->getFechaFin() < corte) {
+                // Guardar en el archivo
+                out << r->getCodigo() << ";"
+                    << r->getCedulaUsuario() << ";"
+                    << r->getIdAlojamiento() << ";"
+                    << r->getFechaPago().toString() << ";"
+                    << r->getMetodoPago() << ";"
+                    << r->getFechaInicio().toString() << ";"
+                    << r->getFechaFin().toString() << ";"
+                    << r->getPregunta() << "\n";
+
+                // Eliminar en usuario
+                Usuario* usuario = buscarUsuarioPorCedula(r->getCedulaUsuario());
+                if (usuario) usuario->quitarReserva(r->getCodigo());
+
+                // Eliminar en alojamiento
+                aloja->quitarReserva(r->getCodigo());
+
+                // Eliminar en arreglo global
+                for (int k = 0; k < totalReservas; k++) {
+                    if (reservas[k] && reservas[k]->getCodigo() == r->getCodigo()) {
+                        delete reservas[k];
+                        reservas[k] = new Reservacion("GENERIC");
+                        break;
+                    }
+                }
+
+                eliminadas++;
+            }
+        }
+    }
+
+    out.close();
+
+    cout << eliminadas << " reservacion(es) fueron archivadas correctamente.\n";
+}
+
 

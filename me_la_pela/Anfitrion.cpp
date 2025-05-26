@@ -73,3 +73,10 @@ void Anfitrion::mostrarCaracteristicas() const {
               << "\nAntigüedad: " << antiguedad_meses << " meses"
               << "\nCalificación: " << calificacion << std::endl;
 }
+
+Alojamiento* Anfitrion::getAlojamiento(int index) const {
+    if (index >= 0 && index < cantidadAlojamientos) {
+        return alojamientos[index];
+    }
+    return nullptr;
+}

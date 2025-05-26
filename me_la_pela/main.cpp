@@ -126,6 +126,7 @@ void menuPrincipal(CargaDatos& sistema) {
         cerr << "Error: " << e.what() << "\n";
     }
 }
+
 int main() {
     CargaDatos sistema;
 
