@@ -93,7 +93,7 @@ bool Fecha::compararFechas(const Fecha &inicio, const Fecha &fin) const {
 
 // Retorna el nombre del mes y día de la semana
 void Fecha::mostrarDiaMes() const {
-    const string diasSemana[] = { "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" };
+    const string diasSemana[] = { "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" };
     const string meses[] = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
                             "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
 

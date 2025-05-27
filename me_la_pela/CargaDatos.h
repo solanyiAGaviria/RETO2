@@ -7,10 +7,7 @@
 #include "Usuario.h"
 #include "Reservacion.h"
 
-#define MAX_ALOJAMIENTOS 100
-#define MAX_ANFITRIONES 50
-#define MAX_USUARIOS 100
-#define MAX_RESERVAS 200
+
 
 class CargaDatos {
 private:
@@ -26,6 +23,14 @@ private:
     Reservacion** reservas;
     int totalReservas;
 
+    int siguienteIdReserva;
+    int capacidadAlojamientos;
+    int capacidadAnfitriones;
+    int capacidadUsuarios;
+    int capacidadReservas;
+
+
+
 public:
     CargaDatos();
     ~CargaDatos();
@@ -34,6 +39,10 @@ public:
     void cargarAnfitriones(const std::string& ruta);
     void cargarUsuarios(const std::string& ruta);
     void cargarReservaciones(const std::string& ruta);
+    void redimensionarAlojamientos();
+    void redimensionarAnfitriones();
+    void redimensionarUsuarios();
+    void redimensionarReservas();
 
     Alojamiento** getAlojamientos();
     int getTotalAlojamientos() const;
@@ -53,6 +62,10 @@ public:
     Usuario* buscarUsuarioPorCedula(int cedula);
     Anfitrion* buscarAnfitrionPorCedula(int cedula);
     void reservarConFiltros(Usuario* usuario);
+    void refrescarEstructura();
+    void guardarReservasEnArchivo(const std::string& ruta);
+
+
 
     void reservarPorCodigo(Usuario* usuario);
     void anularReserva(Usuario* usuario);

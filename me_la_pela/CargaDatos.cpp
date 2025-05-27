@@ -8,10 +8,17 @@
 using namespace std;
 
 CargaDatos::CargaDatos() {
-    alojamientos = new Alojamiento*[MAX_ALOJAMIENTOS];
-    anfitriones = new Anfitrion*[MAX_ANFITRIONES];
-    usuarios = new Usuario*[MAX_USUARIOS];
-    reservas = new Reservacion*[MAX_RESERVAS];
+    siguienteIdReserva = 1;
+    capacidadAlojamientos = 100;
+    capacidadAnfitriones = 100;
+    capacidadUsuarios = 100;
+    capacidadReservas = 200;
+
+    alojamientos = new Alojamiento*[capacidadAlojamientos];
+    anfitriones = new Anfitrion*[capacidadAnfitriones];
+    usuarios = new Usuario*[capacidadUsuarios];
+    reservas = new Reservacion*[capacidadReservas];
+
     totalAlojamientos = totalAnfitriones = totalUsuarios = totalReservas = 0;
 }
 
@@ -60,6 +67,10 @@ void CargaDatos::cargarAlojamientos(const string& ruta) {
         getline(ss, token, ';'); precio = stoi(token);
         getline(ss, amen);
 
+        if (totalAlojamientos >= capacidadAlojamientos)
+            redimensionarAlojamientos();
+
+
         alojamientos[totalAlojamientos++] = new Alojamiento(id, nombre, dep, mun, tipo, dir, precio, amen);
     }
     file.close();
@@ -103,6 +114,10 @@ void CargaDatos::cargarAnfitriones(const string& ruta) {
             }
         }
 
+        if (totalAnfitriones >= capacidadAnfitriones)
+            redimensionarAnfitriones();
+
+
         anfitriones[totalAnfitriones++] = anfitrion;
     }
     file.close();
@@ -131,6 +146,9 @@ void CargaDatos::cargarUsuarios(const string& ruta) {
         getline(ss, clave, ';');
         getline(ss, token); calificacion = stof(token);
 
+        if (totalUsuarios >= capacidadUsuarios)
+            redimensionarUsuarios();
+
         usuarios[totalUsuarios++] = new Usuario(cedula, nombre, clave, calificacion);
     }
     file.close();
@@ -144,7 +162,7 @@ void CargaDatos::cargarReservaciones(const string& ruta) {
     }
 
     string linea;
-    getline(file, linea);
+    getline(file, linea); // Saltar cabecera
 
     while (getline(file, linea)) {
         stringstream ss(linea);
@@ -156,8 +174,18 @@ void CargaDatos::cargarReservaciones(const string& ruta) {
         string fechaPagoStr, fechaIniStr, fechaFinStr;
 
         getline(ss, codigo, ';');
-        getline(ss, token, ';'); cedula_usuario = stol(token);
-        getline(ss, token, ';'); id_aloja = stoi(token);
+
+        // Ignorar líneas vacías o genéricas
+        if (codigo.empty() || codigo == "GENERIC") continue;
+
+        getline(ss, token, ';');
+        if (token.empty()) continue;
+        cedula_usuario = stol(token);
+
+        getline(ss, token, ';');
+        if (token.empty()) continue;
+        id_aloja = stoi(token);
+
         getline(ss, fechaPagoStr, ';');
         getline(ss, metodo_pago, ';');
         getline(ss, fechaIniStr, ';');
@@ -181,10 +209,31 @@ void CargaDatos::cargarReservaciones(const string& ruta) {
 
         if (aloja) aloja->añadirReserva(reserva);
         if (usuario) usuario->añadirReserva(reserva);
-
+        if (totalReservas >= capacidadReservas)
+            redimensionarReservas();
 
         reservas[totalReservas++] = reserva;
+
+        // Validar y actualizar siguienteIdReserva sin usar all_of
+        if (codigo.length() == 7 && codigo.substr(0, 3) == "RSV") {
+            string numeroStr = codigo.substr(3);
+            bool esNumero = true;
+            for (int i = 0; i < numeroStr.length(); i++) {
+                if (numeroStr[i] < '0' || numeroStr[i] > '9') {
+                    esNumero = false;
+                    break;
+                }
+            }
+
+            if (esNumero) {
+                int numero = stoi(numeroStr);
+                if (numero >= siguienteIdReserva) {
+                    siguienteIdReserva = numero + 1;
+                }
+            }
+        }
     }
+
     file.close();
 
     // Verificación cruzada, discutirlo con sol.
@@ -347,13 +396,30 @@ void CargaDatos::reservarPorCodigo(Usuario* usuario) {
             pagoOk = true;
         }
     } while (!pagoOk);
+    // Crear reserva con la pregunta
+    string preguntaCliente;
+    cin.ignore();
+    cout << "Desea hacer alguna pregunta al anfitrion? (max 1000 caracteres): ";
+    getline(cin, preguntaCliente);
+
+    if (preguntaCliente.length() > 1000) {
+        preguntaCliente = preguntaCliente.substr(0, 1000);
+        cout << "La pregunta excedia los 1000 caracteres y fue truncada.\n";
+    }
+
+
+
 
     // Crear y registrar la reservación
     stringstream ss;
-    ss << "RSV" << setfill('0') << setw(4) << totalReservas + 1;
+    ss << "RSV" << setfill('0') << setw(4) << siguienteIdReserva;
     string codigo = ss.str();
+    siguienteIdReserva++;  // Aumentar para la próxima
 
-    Reservacion* r = new Reservacion(codigo, usuario->getCedula(), id, pago, metodo, inicio, fin, "");
+
+
+    Reservacion* r = new Reservacion(codigo, usuario->getCedula(), id, pago, metodo, inicio, fin, preguntaCliente);
+
     usuario->añadirReserva(r);
     alojamiento->añadirReserva(r);
     reservas[totalReservas++] = r;
@@ -384,103 +450,151 @@ void CargaDatos::anularReserva(Usuario* usuario) {
 }
 
 void CargaDatos::reservarConFiltros(Usuario* usuario) {
+    cout << "\n--- Reserva con filtros ---\n";
+
     string municipio;
-    int d, m, a;
-    int noches;
-    int precioMax = 150000;  // valor por defecto
-    float califMin = 0.0;    // sin filtro si queda en cero
+    cout << "Municipio: ";
+    cin >> municipio;
 
-    cout << "Ingrese el municipio deseado: ";
-    cin.ignore(); // Limpiar buffer
-    getline(cin, municipio);
-
-    cout << "Ingrese la fecha de inicio (dd mm aaaa): ";
+    int d, m, a, noches;
+    cout << "Fecha de inicio (dd mm aaaa): ";
     cin >> d >> m >> a;
-    Fecha fechaInicio(d, m, a);
+    Fecha inicio(d, m, a);
 
-    cout << "Cantidad de noches: ";
-    cin >> noches;
-
-    char usarPrecio, usarCalif;
-    cout << "Desea filtrar por precio maximo? (s/n): ";
-    cin >> usarPrecio;
-    if (usarPrecio == 's' || usarPrecio == 'S') {
-        cout << "Ingrese el precio maximo por noche (entre 25000 y 150000): ";
-        cin >> precioMax;
-    }
-
-    cout << "Desea filtrar por calificacion minima del anfitrion? (s/n): ";
-    cin >> usarCalif;
-    if (usarCalif == 's' || usarCalif == 'S') {
-        cout << "Ingrese la calificacion minima del anfitrion: ";
-        cin >> califMin;
-    }
-
-    // Mostrar alojamientos que cumplen los filtros
-    cout << "\n--- Resultados encontrados ---\n";
-    int coincidencias = 0;
-    Alojamiento* candidatos[MAX_ALOJAMIENTOS];
-
-    for (int i = 0; i < totalAlojamientos; i++) {
-        Alojamiento* alo = alojamientos[i];
-        Anfitrion* anf = alo->getAnfitrion();
-
-        if (alo->getMunicipio() != municipio) continue;
-        if (alo->getPrecioNoche() > precioMax) continue;
-        if (anf && anf->getCalificacion() < califMin) continue;
-
-        cout << "\nOpción #" << (coincidencias + 1) << ":\n";
-        alo->mostrarAlojamiento();
-        candidatos[coincidencias++] = alo;
-    }
-
-    if (coincidencias == 0) {
-        cout << "No se encontraron alojamientos con los filtros seleccionados.\n";
+    if (!inicio.fechaValida()) {
+        cout << "Fecha invalida.\n";
         return;
     }
 
-    int opcion;
-    do {
-        cout << "\nSeleccione el número del alojamiento a reservar (1-" << coincidencias << "): ";
-        cin >> opcion;
-    } while (opcion < 1 || opcion > coincidencias);
+    cout << "Cantidad de noches: ";
+    cin >> noches;
+    if (noches < 1) {
+        cout << "Debe reservar al menos una noche.\n";
+        return;
+    }
 
-    Alojamiento* seleccionado = candidatos[opcion - 1];
+    int precioMax = 0;
+    float calificacionMin = 0.0;
+    string opcion;
 
-    // Método de pago
+    cout << "Desea ingresar precio maximo (s/n)? ";
+    cin >> opcion;
+    if (opcion == "s" || opcion == "S") {
+        cout << "Precio maximo (entre 25000 y 150000): ";
+        cin >> precioMax;
+        if (precioMax < 25000 || precioMax > 150000) {
+            cout << "Precio fuera de rango. Se ignorara.\n";
+            precioMax = 0;
+        }
+    }
+
+    cout << "Desea ingresar calificacion minima de anfitrion (s/n)? ";
+    cin >> opcion;
+    if (opcion == "s" || opcion == "S") {
+        cout << "Calificacion minima (0.0 - 5.0): ";
+        cin >> calificacionMin;
+        if (calificacionMin < 0 || calificacionMin > 5.0) {
+            cout << "Calificacion fuera de rango. Se ignorara.\n";
+            calificacionMin = 0.0;
+        }
+    }
+
+    // Buscar alojamientos que cumplen
+    Fecha hoy = Fecha::fechaActual();
+    Fecha fin = inicio.sumarDias(noches - 1);
+    Alojamiento* opciones[100];
+    int totalOpciones = 0;
+
+    for (int i = 0; i < totalAlojamientos; i++) {
+        Alojamiento* a = alojamientos[i];
+        if (!a->getAnfitrion()) continue;
+        if (a->getMunicipio() != municipio) continue;
+        if (precioMax && a->getPrecioNoche() > precioMax) continue;
+        if (calificacionMin && a->getAnfitrion()->getCalificacion() < calificacionMin) continue;
+
+        bool disponible = true;
+        for (int d = 0; d < noches; d++) {
+            Fecha f = inicio.sumarDias(d);
+            if (!a->estaDisponible(f, hoy)) {
+                disponible = false;
+                break;
+            }
+        }
+
+        if (disponible) {
+            opciones[totalOpciones++] = a;
+        }
+    }
+
+    if (totalOpciones == 0) {
+        cout << "No se encontraron alojamientos disponibles con esos filtros.\n";
+        return;
+    }
+
+    // Mostrar opciones
+    cout << "\nAlojamientos disponibles:\n";
+    for (int i = 0; i < totalOpciones; i++) {
+        cout << i + 1 << ". ";
+        opciones[i]->mostrarAlojamiento();
+    }
+
+    int seleccion;
+    cout << "Seleccione el numero del alojamiento: ";
+    cin >> seleccion;
+    if (seleccion < 1 || seleccion > totalOpciones) {
+        cout << "Seleccion invalida.\n";
+        return;
+    }
+
+    Alojamiento* seleccionado = opciones[seleccion - 1];
+
+    // Metodo de pago
     string metodo;
     int metodoOpcion;
     do {
-        cout << "Método de pago (1 = PSE, 2 = TCredito): ";
+        cout << "Metodo de pago (1 = PSE, 2 = TCredito): ";
         cin >> metodoOpcion;
         if (metodoOpcion == 1) metodo = "PSE";
         else if (metodoOpcion == 2) metodo = "TCredito";
-        else cout << "Opción inválida.\n";
+        else cout << "Opcion invalida.\n";
     } while (metodoOpcion != 1 && metodoOpcion != 2);
 
-    // Fecha de pago
-    Fecha fechaPago;
-    cout << "Ingrese la fecha de pago (dd mm aaaa): ";
+    Fecha pago;
+    cout << "Fecha de pago (dd mm aaaa): ";
     cin >> d >> m >> a;
-    fechaPago = Fecha(d, m, a);
+    pago = Fecha(d, m, a);
+    if (!pago.fechaValida()) {
+        cout << "Fecha de pago invalida.\n";
+        return;
+    }
 
-    Fecha fechaFin = fechaInicio.sumarDias(noches);
+    // Pregunta del cliente
+    string preguntaCliente;
+    cin.ignore(); // limpiar buffer
+    cout << "Desea hacer alguna pregunta al anfitrion? (max 1000 caracteres): ";
+    getline(cin, preguntaCliente);
+    if (preguntaCliente.length() > 1000) {
+        preguntaCliente = preguntaCliente.substr(0, 1000);
+        cout << "La pregunta fue truncada a 1000 caracteres.\n";
+    }
 
+    // Crear reserva
     stringstream ss;
-    ss << "RSV" << setfill('0') << setw(4) << totalReservas + 1;
+    ss << "RSV" << setfill('0') << setw(4) << siguienteIdReserva++;
     string codigo = ss.str();
 
-    Reservacion* r = new Reservacion(codigo, usuario->getCedula(), seleccionado->getId(), fechaPago, metodo, fechaInicio, fechaFin, "");
+    Reservacion* r = new Reservacion(codigo, usuario->getCedula(), seleccionado->getId(),
+                                     pago, metodo, inicio, fin, preguntaCliente);
+
     usuario->añadirReserva(r);
     seleccionado->añadirReserva(r);
-    reservas[totalReservas] = r;
-    incrementarTotalReservas();
+    reservas[totalReservas++] = r;
 
-    cout << "\nReservación realizada con éxito:\n";
+    cout << "\nReservacion creada exitosamente:\n";
     r->mostrarComprobante();
 }
 
-// Funcionalidades del menu de anfitrion
+
 void CargaDatos::consultarReservacionesAnfitrion(Anfitrion* anfitrion) {
     cout << "\n--- Consultar reservaciones ---\n";
 
@@ -685,4 +799,116 @@ void CargaDatos::actualizarHistorico(Anfitrion* anfitrion) {
     cout << eliminadas << " reservacion(es) fueron archivadas correctamente.\n";
 }
 
+void CargaDatos::refrescarEstructura() {
+    cout << "\n--- Reorganizando datos del sistema ---\n";
+
+    // Paso 1: Crear nuevo arreglo temporal sin reservas genericas
+    Reservacion** nuevasReservas = new Reservacion*[totalReservas];
+    int nuevasTotal = 0;
+    int n;
+
+    for (int i = 0; i < totalReservas; i++) {
+        if (reservas[i] && !reservas[i]->esGenerica()) {
+            nuevasReservas[nuevasTotal++] = reservas[i];
+        } else if (reservas[i]) {
+            delete reservas[i]; // liberar memoria de la generica
+        }
+        n++;
+    }
+
+    // Paso 2: Reemplazar el arreglo original
+    delete[] reservas;
+    reservas = nuevasReservas;
+    capacidadReservas = totalReservas;
+
+
+    // Paso 3: Limpiar enlaces de alojamiento y usuario
+    for (int i = 0; i < totalAlojamientos; i++) {
+        alojamientos[i]->resetReservas();
+        n++;
+    }
+
+    for (int i = 0; i < totalUsuarios; i++) {
+        usuarios[i]->resetReservas();
+        n++;
+    }
+
+    // Paso 4: Religar cada reserva a su alojamiento y usuario
+    for (int i = 0; i < totalReservas; i++) {
+        Reservacion* r = reservas[i];
+        Alojamiento* aloja = buscarAlojamientoPorId(r->getIdAlojamiento());
+        Usuario* usuario = buscarUsuarioPorCedula(r->getCedulaUsuario());
+
+        if (aloja) aloja->añadirReserva(r);
+        if (usuario) usuario->añadirReserva(r);
+        n++;
+    }
+    cout<< n <<"cantidad de iteraciones\n";
+
+    cout << "Se han reorganizado " << totalReservas << " reservaciones correctamente.\n";
+}
+
+void CargaDatos::guardarReservasEnArchivo(const std::string& ruta) {
+    ofstream file(ruta);
+    if (!file.is_open()) {
+        cerr << "No se pudo abrir el archivo " << ruta << " para escritura.\n";
+        return;
+    }
+
+    // Cabecera del archivo
+    file << "codigo_reserva;cedula_huesped;id_alojamiento;fecha_pago;metodo_pago;fecha_inicio;fecha_fin;pregunta_cliente\n";
+
+    for (int i = 0; i < totalReservas; i++) {
+        Reservacion* r = reservas[i];
+        if (!r || r->esGenerica()) continue;
+
+        file << r->getCodigo() << ";"
+             << r->getCedulaUsuario() << ";"
+             << r->getIdAlojamiento() << ";"
+             << r->getFechaPago().toString() << ";"
+             << r->getMetodoPago() << ";"
+             << r->getFechaInicio().toString() << ";"
+             << r->getFechaFin().toString() << ";"
+             << r->getPregunta() << "\n";
+    }
+
+    file.close();
+    cout << "Reservaciones guardadas exitosamente en '" << ruta << "'.\n";
+}
+
+void CargaDatos::redimensionarAlojamientos() {
+    capacidadAlojamientos *= 2;
+    Alojamiento** nuevo = new Alojamiento*[capacidadAlojamientos];
+    for (int i = 0; i < totalAlojamientos; i++)
+        nuevo[i] = alojamientos[i];
+    delete[] alojamientos;
+    alojamientos = nuevo;
+}
+
+void CargaDatos::redimensionarAnfitriones() {
+    capacidadAnfitriones *= 2;
+    Anfitrion** nuevo = new Anfitrion*[capacidadAnfitriones];
+    for (int i = 0; i < totalAnfitriones; i++)
+        nuevo[i] = anfitriones[i];
+    delete[] anfitriones;
+    anfitriones = nuevo;
+}
+
+void CargaDatos::redimensionarUsuarios() {
+    capacidadUsuarios *= 2;
+    Usuario** nuevo = new Usuario*[capacidadUsuarios];
+    for (int i = 0; i < totalUsuarios; i++)
+        nuevo[i] = usuarios[i];
+    delete[] usuarios;
+    usuarios = nuevo;
+}
+
+void CargaDatos::redimensionarReservas() {
+    capacidadReservas *= 2;
+    Reservacion** nuevo = new Reservacion*[capacidadReservas];
+    for (int i = 0; i < totalReservas; i++)
+        nuevo[i] = reservas[i];
+    delete[] reservas;
+    reservas = nuevo;
+}
 

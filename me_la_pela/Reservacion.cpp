@@ -55,11 +55,11 @@ Reservacion& Reservacion::operator=(const Reservacion &otra) {
 
 void Reservacion::mostrarComprobante() const {
     std::cout << "\n--- COMPROBANTE DE RESERVA ---\n";
-    std::cout << "Código: " << codigo << "\n";
-    std::cout << "Cédula del usuario: " << cedula_usuario << "\n";
+    std::cout << "+Codigo: " << codigo << "\n";
+    std::cout << "+Cedula del usuario: " << cedula_usuario << "\n";
     std::cout << "ID del alojamiento: " << id_alojamiento << "\n";
     std::cout << "Fecha de pago: "; fecha_pago.mostrarDiaMes();
-    std::cout << "Método de pago: " << metodo_pago << "\n";
+    std::cout << "Metodo de pago: " << metodo_pago << "\n";
     std::cout << "Fecha de inicio: "; fecha_inicio.mostrarDiaMes();
     std::cout << "Fecha de fin: "; fecha_fin.mostrarDiaMes();
     std::cout << "Pregunta del cliente: " << pregunta_cliente << "\n";

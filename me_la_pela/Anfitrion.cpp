@@ -1,16 +1,19 @@
-// Anfitrion.cpp
 #include "Anfitrion.h"
 #include <iostream>
 
+using namespace std;
+
 Anfitrion::Anfitrion() : cedula(0), antiguedad_meses(0), calificacion(0.0f), cantidadAlojamientos(0) {
-    alojamientos = new Alojamiento*[MAX_ALOJAMIENTOS];
-    for (int i = 0; i < MAX_ALOJAMIENTOS; i++) alojamientos[i] = nullptr;
+    capacidadAlojamientos = 5;
+    alojamientos = new Alojamiento*[capacidadAlojamientos];
+    for (int i = 0; i < capacidadAlojamientos; i++) alojamientos[i] = nullptr;
 }
 
 Anfitrion::Anfitrion(long ced, const std::string& nom, const std::string& clave_, int ant, float calif)
     : cedula(ced), nombre(nom), clave(clave_), antiguedad_meses(ant), calificacion(calif), cantidadAlojamientos(0) {
-    alojamientos = new Alojamiento*[MAX_ALOJAMIENTOS];
-    for (int i = 0; i < MAX_ALOJAMIENTOS; i++) alojamientos[i] = nullptr;
+    capacidadAlojamientos = 5;
+    alojamientos = new Alojamiento*[capacidadAlojamientos];
+    for (int i = 0; i < capacidadAlojamientos; i++) alojamientos[i] = nullptr;
 }
 
 Anfitrion::Anfitrion(const Anfitrion &otro) {
@@ -20,8 +23,12 @@ Anfitrion::Anfitrion(const Anfitrion &otro) {
     antiguedad_meses = otro.antiguedad_meses;
     calificacion = otro.calificacion;
     cantidadAlojamientos = otro.cantidadAlojamientos;
-    alojamientos = new Alojamiento*[MAX_ALOJAMIENTOS];
-    for (int i = 0; i < MAX_ALOJAMIENTOS; i++) alojamientos[i] = otro.alojamientos[i];
+    capacidadAlojamientos = otro.capacidadAlojamientos;
+
+    alojamientos = new Alojamiento*[capacidadAlojamientos];
+    for (int i = 0; i < cantidadAlojamientos; i++) {
+        alojamientos[i] = otro.alojamientos[i];
+    }
 }
 
 Anfitrion::~Anfitrion() {
@@ -44,34 +51,52 @@ void Anfitrion::setCalificacion(float cal) { calificacion = cal; }
 
 Anfitrion& Anfitrion::operator=(const Anfitrion &otro) {
     if (this != &otro) {
+        delete[] alojamientos;
+
         cedula = otro.cedula;
         nombre = otro.nombre;
         clave = otro.clave;
         antiguedad_meses = otro.antiguedad_meses;
         calificacion = otro.calificacion;
         cantidadAlojamientos = otro.cantidadAlojamientos;
-        for (int i = 0; i < MAX_ALOJAMIENTOS; i++) alojamientos[i] = otro.alojamientos[i];
+        capacidadAlojamientos = otro.capacidadAlojamientos;
+
+        alojamientos = new Alojamiento*[capacidadAlojamientos];
+        for (int i = 0; i < cantidadAlojamientos; i++) {
+            alojamientos[i] = otro.alojamientos[i];
+        }
     }
     return *this;
 }
 
-void Anfitrion::añadirAlojamiento(Alojamiento* a) {
-    if (cantidadAlojamientos < MAX_ALOJAMIENTOS) {
-        alojamientos[cantidadAlojamientos++] = a;
+void Anfitrion::redimensionarAlojamientos() {
+    capacidadAlojamientos *= 2;
+    Alojamiento** nuevo = new Alojamiento*[capacidadAlojamientos];
+    for (int i = 0; i < cantidadAlojamientos; i++) {
+        nuevo[i] = alojamientos[i];
     }
+    delete[] alojamientos;
+    alojamientos = nuevo;
+}
+
+void Anfitrion::añadirAlojamiento(Alojamiento* a) {
+    if (cantidadAlojamientos >= capacidadAlojamientos)
+        redimensionarAlojamientos();
+
+    alojamientos[cantidadAlojamientos++] = a;
 }
 
 void Anfitrion::mostrarAnfitrion() const {
     std::cout << "Nombre: " << nombre
-              << " | Antigüedad: " << antiguedad_meses << " meses"
-              << " | Calificación: " << calificacion << std::endl;
+              << " \n| Antiguedad: " << antiguedad_meses << " meses"
+              << " \n| Calificacion: " << calificacion << std::endl;
 }
 
 void Anfitrion::mostrarCaracteristicas() const {
-    std::cout << "Cédula: " << cedula
+    std::cout << "Cedula: " << cedula
               << "\nNombre: " << nombre
-              << "\nAntigüedad: " << antiguedad_meses << " meses"
-              << "\nCalificación: " << calificacion << std::endl;
+              << "\nAntiguedad: " << antiguedad_meses << " meses"
+              << "\nCalificacion: " << calificacion << "\n\n";
 }
 
 Alojamiento* Anfitrion::getAlojamiento(int index) const {

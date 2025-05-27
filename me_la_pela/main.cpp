@@ -7,6 +7,7 @@ using namespace std;
 
 void menuUsuario(CargaDatos& sistema, Usuario* usuario) {
     int opcion;
+    usuario->mostrarUsuario();
     do {
         cout << "\n--- Menu Usuario ---\n";
         cout << "1. Reservar alojamiento con filtros\n";
@@ -41,6 +42,7 @@ void menuUsuario(CargaDatos& sistema, Usuario* usuario) {
 
 void menuAnfitrion(CargaDatos& sistema, Anfitrion* anfitrion) {
     int opcion;
+    anfitrion->mostrarCaracteristicas();
     do {
         cout << "\n--- Menu Anfitrion ---\n";
         cout << "1. Consultar reservaciones\n";
@@ -59,6 +61,7 @@ void menuAnfitrion(CargaDatos& sistema, Anfitrion* anfitrion) {
             break;
         case 3:
             sistema.actualizarHistorico(anfitrion);
+            sistema.refrescarEstructura();
             break;
         case 4:
             cout << "Saliendo del menu de anfitrion...\n";
@@ -136,6 +139,9 @@ int main() {
     sistema.cargarReservaciones("reservas.txt");
 
     menuPrincipal(sistema);
+
+    sistema.guardarReservasEnArchivo("reservas.txt");
+
 
     return 0;
 }

@@ -1,11 +1,8 @@
-// Usuario.h
 #ifndef USUARIO_H
 #define USUARIO_H
 
 #include <string>
 #include "Reservacion.h"
-
-#define MAX_RESERVAS_USUARIO 100
 
 class Usuario {
 private:
@@ -13,33 +10,40 @@ private:
     std::string nombre;
     std::string clave;
     float calificacion;
+
     Reservacion** reservas;
     int cantidadReservas;
+    int capacidadReservas;
+
+    void redimensionarReservas();  // ✅ redimensionamiento interno
 
 public:
     Usuario();
     Usuario(long ced, const std::string& nom, const std::string& clave_, float calif);
-    Usuario(const Usuario &otro);
+    Usuario(const Usuario& otro);
     ~Usuario();
 
     long getCedula() const;
     std::string getNombre() const;
     std::string getClave() const;
     float getCalificacion() const;
-    Reservacion** getReservas();
     int getCantidadReservas() const;
+    Reservacion** getReservas();
+    Reservacion* getReserva(int index) const;
 
     void setCedula(long c);
     void setNombre(const std::string& n);
     void setClave(const std::string& c);
     void setCalificacion(float cal);
 
-    Usuario& operator=(const Usuario &otro);
-
     void añadirReserva(Reservacion* r);
-    void quitarReserva(const std::string& codigoReserva);
-    void mostrarReservas() const;
+    void quitarReserva(const std::string& codigo);
+    void resetReservas();  // ✅ para refrescar estructura
+
     void mostrarUsuario() const;
+    void mostrarReservas() const;
+
+    Usuario& operator=(const Usuario& otro);
 };
 
-#endif // USUARIO_H
+#endif

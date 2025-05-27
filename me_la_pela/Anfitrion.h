@@ -4,10 +4,6 @@
 #include <string>
 #include "Alojamiento.h"
 
-#define MAX_ALOJAMIENTOS 100
-
-class Alojamiento; // Declaración adelantada
-
 class Anfitrion {
 private:
     long cedula;
@@ -15,16 +11,19 @@ private:
     std::string clave;
     int antiguedad_meses;
     float calificacion;
+
     Alojamiento** alojamientos;
     int cantidadAlojamientos;
+    int capacidadAlojamientos;  // ✅ Capacidad dinámica
+
+    void redimensionarAlojamientos();  // ✅ Método interno de expansión
 
 public:
     Anfitrion();
     Anfitrion(long ced, const std::string& nom, const std::string& clave_, int ant, float calif);
-    Anfitrion(const Anfitrion &otro);
+    Anfitrion(const Anfitrion& otro);
     ~Anfitrion();
 
-    // Getters
     long getCedula() const;
     std::string getNombre() const;
     std::string getClave() const;
@@ -32,22 +31,20 @@ public:
     float getCalificacion() const;
     int getCantidadAlojamientos() const;
     Alojamiento** getAlojamientos();
+    Alojamiento* getAlojamiento(int index) const;
 
-    // Setters
     void setCedula(long c);
     void setNombre(const std::string& n);
     void setClave(const std::string& c);
     void setAntiguedad(int a);
     void setCalificacion(float cal);
 
-    // Operador de asignación
-    Anfitrion& operator=(const Anfitrion &otro);
-
-    // Métodos
     void añadirAlojamiento(Alojamiento* a);
+
     void mostrarAnfitrion() const;
     void mostrarCaracteristicas() const;
-    Alojamiento* getAlojamiento(int index) const;
+
+    Anfitrion& operator=(const Anfitrion& otro);
 };
 
-#endif // ANFITRION_H
+#endif
