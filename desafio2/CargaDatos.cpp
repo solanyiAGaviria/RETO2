@@ -805,9 +805,8 @@ void CargaDatos::refrescarEstructura() {
     cout << "\n--- Reorganizando datos del sistema ---\n";
 
     // Paso 1: Crear nuevo arreglo temporal sin reservas genericas
-    Reservacion** nuevasReservas = new Reservacion*[totalReservas];
+    Reservacion** nuevasReservas = new Reservacion*[capacidadReservas]; // usa la capacidad actual
     int nuevasTotal = 0;
-    int n;
 
     for (int i = 0; i < totalReservas; i++) {
         if (reservas[i] && !reservas[i]->esGenerica()) {
@@ -815,27 +814,25 @@ void CargaDatos::refrescarEstructura() {
         } else if (reservas[i]) {
             delete reservas[i]; // liberar memoria de la generica
         }
-        n++;
     }
 
     // Paso 2: Reemplazar el arreglo original
     delete[] reservas;
     reservas = nuevasReservas;
-    capacidadReservas = totalReservas;
-
+    totalReservas = nuevasTotal;
+    capacidadReservas = (capacidadReservas < totalReservas) ? totalReservas : capacidadReservas;
 
     // Paso 3: Limpiar enlaces de alojamiento y usuario
     for (int i = 0; i < totalAlojamientos; i++) {
         alojamientos[i]->resetReservas();
-        n++;
     }
 
     for (int i = 0; i < totalUsuarios; i++) {
         usuarios[i]->resetReservas();
-        n++;
     }
 
     // Paso 4: Religar cada reserva a su alojamiento y usuario
+    int relinked = 0;
     for (int i = 0; i < totalReservas; i++) {
         Reservacion* r = reservas[i];
         Alojamiento* aloja = buscarAlojamientoPorId(r->getIdAlojamiento());
@@ -843,12 +840,13 @@ void CargaDatos::refrescarEstructura() {
 
         if (aloja) aloja->añadirReserva(r);
         if (usuario) usuario->añadirReserva(r);
-        n++;
-    }
-    cout<< n <<"cantidad de iteraciones\n";
 
-    cout << "Se han reorganizado " << totalReservas << " reservaciones correctamente.\n";
+        if (aloja && usuario) relinked++;
+    }
+
+    cout << "Se han reorganizado " << relinked << " reservaciones correctamente.\n";
 }
+
 
 void CargaDatos::guardarReservasEnArchivo(const std::string& ruta) {
     ofstream file(ruta);
