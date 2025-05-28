@@ -1,0 +1,251 @@
+id_alojamiento;nombre;departamento;municipio;tipo;direccion;precio_noche;amenidades
+1000;Alojamiento_1000;Antioquia;Itagui;apartamento;Calle 90 #43-64;126585;patio,piscina,caja fuerte
+1001;Alojamiento_1001;Antioquia;Itagui;casa;Calle 49 #44-53;129212;wifi,bbq,patio,piscina,lavadora,ascensor
+1002;Alojamiento_1002;Antioquia;Bello;apartamento;Calle 91 #70-37;142092;parqueadero,lavadora,aire acondicionado,bbq
+1003;Alojamiento_1003;Antioquia;Envigado;apartamento;Calle 24 #71-51;117343;parqueadero,aire acondicionado,ascensor,lavadora,tv,wifi
+1004;Alojamiento_1004;Antioquia;Envigado;apartamento;Calle 13 #24-30;47927;ascensor,tv,bbq,wifi,patio,lavadora
+1005;Alojamiento_1005;Antioquia;Itagui;casa barrio;Calle 1 #85-81;66173;caja fuerte,bbq,tv,ascensor
+1006;Alojamiento_1006;Antioquia;Itagui;casa;Calle 8 #2-11;51713;aire acondicionado,tv,caja fuerte,wifi
+1007;Alojamiento_1007;Antioquia;Envigado;apartamento;Calle 98 #66-15;90939;patio,piscina,tv
+1008;Alojamiento_1008;Antioquia;Itagui;casa barrio;Calle 70 #69-84;27255;parqueadero,patio,bbq,piscina,aire acondicionado,ascensor
+1009;Alojamiento_1009;Antioquia;Itagui;casa barrio;Calle 87 #58-6;89121;tv,wifi,aire acondicionado,caja fuerte
+1010;Alojamiento_1010;Antioquia;Envigado;casa;Calle 90 #43-64;107054;caja fuerte,parqueadero,bbq,lavadora,piscina,patio
+1011;Alojamiento_1011;Antioquia;Envigado;casa;Calle 94 #65-42;123235;tv,bbq,ascensor,wifi,lavadora
+1012;Alojamiento_1012;Antioquia;Rionegro;apartamento;Calle 76 #28-83;126867;wifi,piscina,patio,ascensor,caja fuerte,bbq
+1013;Alojamiento_1013;Antioquia;Bello;apartamento;Calle 41 #64-95;88731;parqueadero,caja fuerte,piscina,bbq
+1014;Alojamiento_1014;Antioquia;Envigado;casa barrio;Calle 89 #71-84;147712;patio,aire acondicionado,bbq,parqueadero,tv,caja fuerte
+1015;Alojamiento_1015;Antioquia;Medellin;casa barrio;Calle 10 #79-17;46084;piscina,aire acondicionado,lavadora
+1016;Alojamiento_1016;Antioquia;Bello;apartamento;Calle 99 #23-29;78888;patio,parqueadero,aire acondicionado
+1017;Alojamiento_1017;Antioquia;Bello;apartamento;Calle 28 #1-49;137842;ascensor,aire acondicionado,tv,parqueadero,piscina
+1018;Alojamiento_1018;Antioquia;Bello;casa;Calle 81 #94-79;81584;ascensor,piscina,aire acondicionado,parqueadero
+1019;Alojamiento_1019;Antioquia;Medellin;casa;Calle 74 #5-25;73033;aire acondicionado,parqueadero,piscina
+1020;Alojamiento_1020;Antioquia;Envigado;casa;Calle 72 #61-85;70023;parqueadero,piscina,caja fuerte
+1021;Alojamiento_1021;Antioquia;Rionegro;casa;Calle 55 #98-34;68721;caja fuerte,parqueadero,wifi,aire acondicionado,piscina,lavadora
+1022;Alojamiento_1022;Antioquia;Itagui;casa;Calle 98 #66-15;112624;caja fuerte,wifi,piscina,aire acondicionado,ascensor,parqueadero
+1023;Alojamiento_1023;Antioquia;Bello;casa barrio;Calle 7 #58-57;95084;lavadora,patio,piscina
+1024;Alojamiento_1024;Antioquia;Envigado;casa barrio;Calle 1 #85-81;68843;tv,lavadora,wifi
+1025;Alojamiento_1025;Antioquia;Rionegro;apartamento;Calle 13 #24-30;115525;tv,patio,aire acondicionado
+1026;Alojamiento_1026;Antioquia;Envigado;casa barrio;Calle 30 #80-92;114093;patio,piscina,bbq
+1027;Alojamiento_1027;Antioquia;Itagui;casa;Calle 12 #60-20;99307;wifi,lavadora,caja fuerte,tv
+1028;Alojamiento_1028;Antioquia;Medellin;casa;Calle 33 #93-98;76239;tv,patio,lavadora,piscina,caja fuerte,aire acondicionado
+1029;Alojamiento_1029;Antioquia;Medellin;apartamento;Calle 5 #55-47;28011;tv,piscina,lavadora,caja fuerte,wifi
+1030;Alojamiento_1030;Antioquia;Itagui;casa;Calle 90 #43-64;128778;wifi,patio,caja fuerte
+1031;Alojamiento_1031;Antioquia;Envigado;casa;Calle 85 #17-92;61620;caja fuerte,parqueadero,patio,lavadora,bbq
+1032;Alojamiento_1032;Antioquia;Itagui;casa barrio;Calle 76 #28-83;71724;wifi,ascensor,aire acondicionado
+1033;Alojamiento_1033;Antioquia;Itagui;casa barrio;Calle 38 #1-82;45104;patio,ascensor,bbq
+1034;Alojamiento_1034;Antioquia;Envigado;casa barrio;Calle 88 #71-79;144951;tv,lavadora,wifi,ascensor,caja fuerte
+1035;Alojamiento_1035;Antioquia;Envigado;casa barrio;Calle 58 #48-99;30441;bbq,lavadora,wifi,aire acondicionado,ascensor,caja fuerte
+1036;Alojamiento_1036;Antioquia;Medellin;casa barrio;Calle 48 #24-58;70129;parqueadero,piscina,ascensor,wifi,caja fuerte,lavadora
+1037;Alojamiento_1037;Antioquia;Envigado;casa;Calle 10 #79-17;140558;aire acondicionado,patio,ascensor,caja fuerte,lavadora
+1038;Alojamiento_1038;Antioquia;Rionegro;casa;Calle 33 #93-98;109917;piscina,wifi,bbq,parqueadero
+1039;Alojamiento_1039;Antioquia;Medellin;apartamento;Calle 2 #86-71;135752;piscina,tv,parqueadero,bbq,aire acondicionado
+1040;Alojamiento_1040;Antioquia;Itagui;casa barrio;Calle 49 #44-53;91493;caja fuerte,ascensor,piscina,bbq
+1041;Alojamiento_1041;Antioquia;Envigado;apartamento;Calle 100 #71-25;25477;aire acondicionado,piscina,bbq,caja fuerte
+1042;Alojamiento_1042;Antioquia;Medellin;apartamento;Calle 52 #29-31;140512;bbq,caja fuerte,wifi
+1043;Alojamiento_1043;Antioquia;Bello;casa;Calle 63 #24-87;54342;piscina,parqueadero,ascensor,bbq
+1044;Alojamiento_1044;Antioquia;Medellin;casa barrio;Calle 68 #67-59;144641;bbq,aire acondicionado,tv,parqueadero,wifi
+1045;Alojamiento_1045;Antioquia;Itagui;casa;Calle 59 #94-54;111761;bbq,lavadora,wifi,piscina,tv,patio
+1046;Alojamiento_1046;Antioquia;Rionegro;apartamento;Calle 55 #98-34;84683;ascensor,piscina,wifi,tv,aire acondicionado,caja fuerte
+1047;Alojamiento_1047;Antioquia;Itagui;casa;Calle 87 #58-6;97575;aire acondicionado,tv,piscina,lavadora,caja fuerte,parqueadero
+1048;Alojamiento_1048;Antioquia;Bello;casa barrio;Calle 59 #94-54;90964;parqueadero,lavadora,patio,tv,aire acondicionado,wifi
+1049;Alojamiento_1049;Antioquia;Medellin;casa barrio;Calle 65 #23-16;79095;lavadora,ascensor,patio,bbq,wifi
+1050;Alojamiento_1050;Antioquia;Medellin;apartamento;Calle 7 #58-57;30466;piscina,parqueadero,ascensor,tv
+1051;Alojamiento_1051;Antioquia;Medellin;apartamento;Calle 89 #71-84;58854;patio,tv,parqueadero
+1052;Alojamiento_1052;Antioquia;Rionegro;casa;Calle 40 #98-90;132979;wifi,lavadora,piscina,patio,ascensor,tv
+1053;Alojamiento_1053;Antioquia;Medellin;apartamento;Calle 28 #1-49;74470;bbq,tv,patio,ascensor,caja fuerte
+1054;Alojamiento_1054;Antioquia;Itagui;casa;Calle 9 #45-39;35879;parqueadero,lavadora,ascensor,caja fuerte,tv
+1055;Alojamiento_1055;Antioquia;Envigado;casa barrio;Calle 88 #71-79;143515;aire acondicionado,bbq,tv,ascensor,patio,parqueadero
+1056;Alojamiento_1056;Antioquia;Envigado;casa barrio;Calle 20 #82-79;148050;bbq,aire acondicionado,caja fuerte,tv,patio,ascensor
+1057;Alojamiento_1057;Antioquia;Medellin;casa;Calle 91 #70-37;52965;ascensor,bbq,tv,aire acondicionado,caja fuerte,piscina
+1058;Alojamiento_1058;Antioquia;Rionegro;casa barrio;Calle 59 #94-54;117737;patio,tv,wifi,piscina,bbq
+1059;Alojamiento_1059;Antioquia;Medellin;casa;Calle 82 #38-57;40865;piscina,aire acondicionado,patio
+1060;Alojamiento_1060;Antioquia;Medellin;casa;Calle 69 #72-88;49986;tv,piscina,aire acondicionado,ascensor,parqueadero
+1061;Alojamiento_1061;Antioquia;Itagui;casa;Calle 96 #13-14;42007;caja fuerte,ascensor,lavadora
+1062;Alojamiento_1062;Antioquia;Itagui;casa;Calle 16 #15-50;112040;caja fuerte,ascensor,tv,aire acondicionado,bbq,wifi
+1063;Alojamiento_1063;Antioquia;Rionegro;casa;Calle 41 #64-95;149535;caja fuerte,parqueadero,patio,piscina
+1064;Alojamiento_1064;Antioquia;Envigado;casa;Calle 41 #64-95;95057;patio,aire acondicionado,tv,parqueadero
+1065;Alojamiento_1065;Antioquia;Envigado;casa barrio;Calle 15 #25-37;55391;wifi,lavadora,bbq,piscina
+1066;Alojamiento_1066;Antioquia;Bello;casa barrio;Calle 71 #19-62;79499;ascensor,lavadora,aire acondicionado,wifi,patio
+1067;Alojamiento_1067;Antioquia;Itagui;casa barrio;Calle 23 #75-85;90836;piscina,caja fuerte,lavadora,parqueadero,wifi
+1068;Alojamiento_1068;Antioquia;Itagui;apartamento;Calle 86 #47-45;48616;patio,caja fuerte,wifi,tv,parqueadero,piscina
+1069;Alojamiento_1069;Antioquia;Rionegro;casa;Calle 26 #26-64;83251;lavadora,piscina,ascensor,wifi,bbq,caja fuerte
+1070;Alojamiento_1070;Antioquia;Envigado;casa;Calle 32 #83-51;35358;lavadora,aire acondicionado,wifi,parqueadero
+1071;Alojamiento_1071;Antioquia;Medellin;apartamento;Calle 29 #33-68;52738;tv,bbq,piscina,ascensor,caja fuerte
+1072;Alojamiento_1072;Antioquia;Itagui;casa;Calle 49 #44-53;46694;wifi,parqueadero,ascensor
+1073;Alojamiento_1073;Antioquia;Medellin;apartamento;Calle 57 #34-63;30141;parqueadero,ascensor,bbq,piscina,lavadora,caja fuerte
+1074;Alojamiento_1074;Antioquia;Rionegro;apartamento;Calle 74 #5-25;133063;lavadora,aire acondicionado,caja fuerte,parqueadero
+1075;Alojamiento_1075;Antioquia;Rionegro;apartamento;Calle 52 #29-31;134150;aire acondicionado,bbq,ascensor,caja fuerte,tv,wifi
+1076;Alojamiento_1076;Antioquia;Medellin;casa barrio;Calle 77 #52-49;80882;bbq,tv,parqueadero,caja fuerte,piscina
+1077;Alojamiento_1077;Antioquia;Rionegro;casa barrio;Calle 84 #81-13;138772;ascensor,parqueadero,lavadora
+1078;Alojamiento_1078;Antioquia;Medellin;casa;Calle 5 #55-47;123335;patio,bbq,tv,parqueadero,wifi,caja fuerte
+1079;Alojamiento_1079;Antioquia;Medellin;apartamento;Calle 53 #67-18;50084;aire acondicionado,wifi,parqueadero
+1080;Alojamiento_1080;Antioquia;Medellin;casa;Calle 72 #61-85;116208;piscina,bbq,aire acondicionado
+1081;Alojamiento_1081;Antioquia;Rionegro;casa;Calle 85 #17-92;93030;lavadora,wifi,piscina,aire acondicionado,patio
+1082;Alojamiento_1082;Antioquia;Medellin;casa;Calle 46 #92-80;129989;piscina,bbq,aire acondicionado,patio,wifi,parqueadero
+1083;Alojamiento_1083;Antioquia;Bello;apartamento;Calle 47 #48-50;137044;caja fuerte,aire acondicionado,patio
+1084;Alojamiento_1084;Antioquia;Bello;casa;Calle 81 #94-79;40574;lavadora,tv,parqueadero,wifi
+1085;Alojamiento_1085;Antioquia;Itagui;casa;Calle 59 #94-54;109672;aire acondicionado,tv,patio,lavadora
+1086;Alojamiento_1086;Antioquia;Rionegro;apartamento;Calle 21 #32-9;52733;aire acondicionado,patio,caja fuerte,ascensor,parqueadero,wifi
+1087;Alojamiento_1087;Antioquia;Bello;apartamento;Calle 22 #36-96;73313;parqueadero,tv,ascensor,aire acondicionado
+1088;Alojamiento_1088;Antioquia;Itagui;apartamento;Calle 29 #33-68;36145;bbq,tv,caja fuerte,parqueadero
+1089;Alojamiento_1089;Antioquia;Bello;casa;Calle 18 #64-59;29402;wifi,aire acondicionado,caja fuerte,piscina,lavadora,bbq
+1090;Alojamiento_1090;Antioquia;Itagui;casa;Calle 22 #36-96;44292;caja fuerte,piscina,patio
+1091;Alojamiento_1091;Antioquia;Bello;apartamento;Calle 6 #76-21;63612;tv,aire acondicionado,caja fuerte,lavadora,parqueadero
+1092;Alojamiento_1092;Antioquia;Itagui;casa barrio;Calle 53 #67-18;143877;aire acondicionado,piscina,tv
+1093;Alojamiento_1093;Antioquia;Envigado;apartamento;Calle 90 #43-64;128768;bbq,caja fuerte,parqueadero,aire acondicionado,wifi,piscina
+1094;Alojamiento_1094;Antioquia;Envigado;apartamento;Calle 38 #1-82;72468;caja fuerte,aire acondicionado,patio
+1095;Alojamiento_1095;Antioquia;Rionegro;casa;Calle 72 #61-85;123234;tv,aire acondicionado,lavadora,caja fuerte,bbq
+1096;Alojamiento_1096;Antioquia;Rionegro;casa barrio;Calle 88 #71-79;141579;tv,piscina,aire acondicionado,patio,wifi,lavadora
+1097;Alojamiento_1097;Antioquia;Medellin;casa;Calle 38 #1-82;55644;wifi,caja fuerte,parqueadero,patio,lavadora,bbq
+1098;Alojamiento_1098;Antioquia;Itagui;casa barrio;Calle 60 #75-42;108773;aire acondicionado,lavadora,tv,patio,caja fuerte,piscina
+1099;Alojamiento_1099;Antioquia;Rionegro;apartamento;Calle 91 #70-37;134144;parqueadero,wifi,caja fuerte
+1100;Alojamiento_1100;Antioquia;Rionegro;casa;Calle 5 #55-47;44035;lavadora,piscina,ascensor
+1101;Alojamiento_1101;Antioquia;Envigado;casa;Calle 6 #76-21;116954;bbq,caja fuerte,parqueadero,patio,wifi,piscina
+1102;Alojamiento_1102;Antioquia;Envigado;casa;Calle 63 #24-87;73862;aire acondicionado,parqueadero,bbq,caja fuerte,tv
+1103;Alojamiento_1103;Antioquia;Envigado;casa barrio;Calle 12 #60-20;81931;bbq,patio,lavadora,wifi,caja fuerte
+1104;Alojamiento_1104;Antioquia;Rionegro;casa barrio;Calle 29 #33-68;29987;parqueadero,patio,caja fuerte
+1105;Alojamiento_1105;Antioquia;Rionegro;casa;Calle 26 #26-64;64910;bbq,tv,wifi
+1106;Alojamiento_1106;Antioquia;Envigado;casa;Calle 84 #81-13;141383;patio,tv,ascensor,piscina
+1107;Alojamiento_1107;Antioquia;Rionegro;casa barrio;Calle 80 #23-75;106679;wifi,patio,tv,parqueadero,ascensor,caja fuerte
+1108;Alojamiento_1108;Antioquia;Medellin;apartamento;Calle 34 #66-42;132448;parqueadero,patio,ascensor,wifi,piscina,caja fuerte
+1109;Alojamiento_1109;Antioquia;Bello;casa;Calle 45 #63-11;35471;caja fuerte,aire acondicionado,tv,piscina,lavadora
+1110;Alojamiento_1110;Antioquia;Bello;apartamento;Calle 77 #52-49;139255;aire acondicionado,lavadora,piscina,caja fuerte
+1111;Alojamiento_1111;Antioquia;Bello;casa barrio;Calle 94 #65-42;39357;parqueadero,lavadora,aire acondicionado
+1112;Alojamiento_1112;Antioquia;Rionegro;casa;Calle 65 #23-16;97314;lavadora,aire acondicionado,bbq
+1113;Alojamiento_1113;Antioquia;Itagui;casa barrio;Calle 72 #61-85;91437;ascensor,parqueadero,aire acondicionado,tv
+1114;Alojamiento_1114;Antioquia;Itagui;casa barrio;Calle 64 #54-7;89953;caja fuerte,lavadora,ascensor
+1115;Alojamiento_1115;Antioquia;Medellin;casa barrio;Calle 26 #26-64;99489;patio,piscina,lavadora,parqueadero,wifi
+1116;Alojamiento_1116;Antioquia;Medellin;casa;Calle 82 #38-57;29250;tv,aire acondicionado,ascensor,caja fuerte
+1117;Alojamiento_1117;Antioquia;Rionegro;casa;Calle 99 #23-29;56064;piscina,caja fuerte,lavadora
+1118;Alojamiento_1118;Antioquia;Rionegro;casa;Calle 84 #81-13;133475;wifi,lavadora,patio,parqueadero
+1119;Alojamiento_1119;Antioquia;Envigado;apartamento;Calle 28 #1-49;77845;piscina,parqueadero,bbq,wifi,caja fuerte,lavadora
+1120;Alojamiento_1120;Antioquia;Medellin;casa barrio;Calle 71 #19-62;40762;patio,caja fuerte,lavadora,wifi,tv,ascensor
+1121;Alojamiento_1121;Antioquia;Bello;casa barrio;Calle 21 #32-9;104981;piscina,patio,wifi,ascensor,aire acondicionado
+1122;Alojamiento_1122;Antioquia;Medellin;casa barrio;Calle 86 #47-45;29472;patio,lavadora,ascensor,aire acondicionado,tv,piscina
+1123;Alojamiento_1123;Antioquia;Rionegro;casa;Calle 54 #14-27;116904;piscina,caja fuerte,bbq
+1124;Alojamiento_1124;Antioquia;Medellin;casa barrio;Calle 73 #61-11;121108;piscina,bbq,caja fuerte,parqueadero,wifi,patio
+1125;Alojamiento_1125;Antioquia;Medellin;casa barrio;Calle 33 #93-98;50593;aire acondicionado,piscina,lavadora
+1126;Alojamiento_1126;Antioquia;Medellin;casa;Calle 77 #52-49;71825;patio,aire acondicionado,lavadora,wifi,ascensor
+1127;Alojamiento_1127;Antioquia;Envigado;apartamento;Calle 79 #18-44;56477;piscina,wifi,lavadora,ascensor
+1128;Alojamiento_1128;Antioquia;Medellin;casa barrio;Calle 97 #44-33;38353;parqueadero,ascensor,tv
+1129;Alojamiento_1129;Antioquia;Itagui;apartamento;Calle 28 #1-49;34665;aire acondicionado,patio,piscina
+1130;Alojamiento_1130;Antioquia;Medellin;casa barrio;Calle 81 #94-79;127100;patio,piscina,parqueadero,wifi,caja fuerte,ascensor
+1131;Alojamiento_1131;Antioquia;Rionegro;casa;Calle 46 #92-80;129550;lavadora,piscina,patio,ascensor
+1132;Alojamiento_1132;Antioquia;Medellin;apartamento;Calle 57 #34-63;66789;piscina,parqueadero,aire acondicionado
+1133;Alojamiento_1133;Antioquia;Itagui;casa barrio;Calle 11 #92-47;54847;wifi,tv,piscina,patio,caja fuerte
+1134;Alojamiento_1134;Antioquia;Itagui;casa;Calle 66 #15-31;94535;ascensor,piscina,wifi,caja fuerte,bbq,parqueadero
+1135;Alojamiento_1135;Antioquia;Medellin;casa barrio;Calle 7 #58-57;128410;wifi,aire acondicionado,ascensor,bbq,caja fuerte
+1136;Alojamiento_1136;Antioquia;Bello;casa barrio;Calle 63 #24-87;54975;patio,parqueadero,tv,lavadora,bbq
+1137;Alojamiento_1137;Antioquia;Rionegro;casa;Calle 97 #44-33;29497;wifi,piscina,aire acondicionado,caja fuerte,ascensor
+1138;Alojamiento_1138;Antioquia;Medellin;casa;Calle 98 #66-15;44659;bbq,caja fuerte,patio,parqueadero,tv,piscina
+1139;Alojamiento_1139;Antioquia;Itagui;apartamento;Calle 4 #26-63;124605;piscina,bbq,ascensor
+1140;Alojamiento_1140;Antioquia;Envigado;casa barrio;Calle 29 #33-68;48479;patio,caja fuerte,aire acondicionado,tv,wifi
+1141;Alojamiento_1141;Antioquia;Medellin;apartamento;Calle 12 #60-20;136518;wifi,lavadora,ascensor,piscina,tv
+1142;Alojamiento_1142;Antioquia;Rionegro;casa;Calle 44 #85-49;92023;bbq,tv,aire acondicionado,caja fuerte,lavadora
+1143;Alojamiento_1143;Antioquia;Itagui;casa barrio;Calle 21 #32-9;98434;piscina,lavadora,bbq
+1144;Alojamiento_1144;Antioquia;Envigado;apartamento;Calle 96 #13-14;119156;aire acondicionado,tv,piscina,bbq
+1145;Alojamiento_1145;Antioquia;Medellin;apartamento;Calle 25 #64-68;138241;wifi,ascensor,caja fuerte,aire acondicionado
+1146;Alojamiento_1146;Antioquia;Envigado;apartamento;Calle 1 #85-81;130652;ascensor,aire acondicionado,lavadora,piscina,patio
+1147;Alojamiento_1147;Antioquia;Medellin;casa barrio;Calle 37 #76-37;81845;tv,aire acondicionado,parqueadero,bbq
+1148;Alojamiento_1148;Antioquia;Itagui;apartamento;Calle 92 #45-96;145719;lavadora,wifi,aire acondicionado,ascensor,bbq,parqueadero
+1149;Alojamiento_1149;Antioquia;Bello;casa;Calle 35 #31-97;28605;ascensor,wifi,piscina
+1150;Alojamiento_1150;Antioquia;Rionegro;casa barrio;Calle 83 #100-85;46794;caja fuerte,piscina,parqueadero,lavadora,patio
+1151;Alojamiento_1151;Antioquia;Envigado;casa barrio;Calle 8 #2-11;45947;parqueadero,tv,bbq,lavadora,aire acondicionado,caja fuerte
+1152;Alojamiento_1152;Antioquia;Itagui;apartamento;Calle 11 #92-47;38718;wifi,lavadora,bbq
+1153;Alojamiento_1153;Antioquia;Envigado;casa;Calle 23 #75-85;138728;lavadora,wifi,caja fuerte,ascensor
+1154;Alojamiento_1154;Antioquia;Envigado;casa barrio;Calle 84 #81-13;101388;caja fuerte,bbq,parqueadero
+1155;Alojamiento_1155;Antioquia;Rionegro;casa barrio;Calle 50 #23-41;88600;patio,wifi,bbq
+1156;Alojamiento_1156;Antioquia;Medellin;casa barrio;Calle 62 #17-37;136959;ascensor,bbq,parqueadero
+1157;Alojamiento_1157;Antioquia;Bello;apartamento;Calle 25 #64-68;52614;parqueadero,aire acondicionado,lavadora
+1158;Alojamiento_1158;Antioquia;Envigado;casa barrio;Calle 72 #61-85;55509;wifi,piscina,ascensor,parqueadero
+1159;Alojamiento_1159;Antioquia;Medellin;casa barrio;Calle 78 #23-76;124108;bbq,caja fuerte,wifi,parqueadero,lavadora
+1160;Alojamiento_1160;Antioquia;Rionegro;casa barrio;Calle 75 #3-83;89791;wifi,lavadora,patio,bbq,tv,aire acondicionado
+1161;Alojamiento_1161;Antioquia;Itagui;casa barrio;Calle 71 #19-62;120088;patio,aire acondicionado,wifi,piscina
+1162;Alojamiento_1162;Antioquia;Rionegro;casa barrio;Calle 30 #80-92;35093;wifi,aire acondicionado,parqueadero,lavadora,bbq
+1163;Alojamiento_1163;Antioquia;Envigado;apartamento;Calle 74 #5-25;28969;bbq,patio,piscina,tv
+1164;Alojamiento_1164;Antioquia;Rionegro;casa barrio;Calle 22 #36-96;54367;caja fuerte,lavadora,bbq,patio,aire acondicionado
+1165;Alojamiento_1165;Antioquia;Rionegro;apartamento;Calle 39 #91-32;138540;patio,caja fuerte,piscina,parqueadero,ascensor
+1166;Alojamiento_1166;Antioquia;Rionegro;apartamento;Calle 20 #82-79;36416;ascensor,patio,lavadora
+1167;Alojamiento_1167;Antioquia;Bello;casa barrio;Calle 79 #18-44;112065;lavadora,wifi,patio,piscina
+1168;Alojamiento_1168;Antioquia;Bello;casa;Calle 44 #85-49;60269;aire acondicionado,ascensor,tv,caja fuerte,wifi
+1169;Alojamiento_1169;Antioquia;Rionegro;casa barrio;Calle 35 #31-97;100753;wifi,aire acondicionado,ascensor,caja fuerte,bbq
+1170;Alojamiento_1170;Antioquia;Envigado;casa barrio;Calle 99 #23-29;91007;ascensor,piscina,tv,aire acondicionado
+1171;Alojamiento_1171;Antioquia;Rionegro;casa;Calle 68 #67-59;61372;parqueadero,wifi,piscina,aire acondicionado,bbq
+1172;Alojamiento_1172;Antioquia;Bello;casa barrio;Calle 29 #33-68;130714;caja fuerte,ascensor,tv,patio,lavadora
+1173;Alojamiento_1173;Antioquia;Itagui;casa barrio;Calle 25 #64-68;124082;piscina,wifi,lavadora
+1174;Alojamiento_1174;Antioquia;Envigado;apartamento;Calle 49 #44-53;33361;parqueadero,lavadora,bbq
+1175;Alojamiento_1175;Antioquia;Bello;apartamento;Calle 2 #86-71;110122;bbq,piscina,patio,aire acondicionado
+1176;Alojamiento_1176;Antioquia;Rionegro;casa barrio;Calle 42 #67-10;46991;aire acondicionado,patio,parqueadero
+1177;Alojamiento_1177;Antioquia;Itagui;casa barrio;Calle 84 #81-13;30934;patio,piscina,bbq,ascensor,caja fuerte,parqueadero
+1178;Alojamiento_1178;Antioquia;Rionegro;casa barrio;Calle 25 #64-68;121418;ascensor,wifi,bbq,piscina,aire acondicionado
+1179;Alojamiento_1179;Antioquia;Envigado;casa;Calle 18 #64-59;103781;piscina,aire acondicionado,patio,wifi
+1180;Alojamiento_1180;Antioquia;Medellin;casa barrio;Calle 62 #17-37;148672;caja fuerte,tv,ascensor,parqueadero
+1181;Alojamiento_1181;Antioquia;Rionegro;apartamento;Calle 63 #24-87;77710;piscina,tv,parqueadero,wifi,ascensor,caja fuerte
+1182;Alojamiento_1182;Antioquia;Bello;apartamento;Calle 3 #40-25;113245;caja fuerte,aire acondicionado,tv
+1183;Alojamiento_1183;Antioquia;Envigado;casa;Calle 83 #100-85;121106;caja fuerte,piscina,wifi,parqueadero,bbq,ascensor
+1184;Alojamiento_1184;Antioquia;Rionegro;casa barrio;Calle 46 #92-80;40199;aire acondicionado,parqueadero,bbq,ascensor,patio,wifi
+1185;Alojamiento_1185;Antioquia;Rionegro;casa;Calle 97 #44-33;122740;caja fuerte,patio,parqueadero,aire acondicionado,wifi,lavadora
+1186;Alojamiento_1186;Antioquia;Itagui;apartamento;Calle 47 #48-50;113022;wifi,patio,ascensor,lavadora
+1187;Alojamiento_1187;Antioquia;Medellin;apartamento;Calle 88 #71-79;123551;patio,tv,lavadora,caja fuerte,bbq
+1188;Alojamiento_1188;Antioquia;Envigado;casa barrio;Calle 16 #15-50;123084;lavadora,parqueadero,ascensor,wifi,patio,tv
+1189;Alojamiento_1189;Antioquia;Rionegro;casa;Calle 16 #15-50;90386;piscina,wifi,patio
+1190;Alojamiento_1190;Antioquia;Rionegro;casa;Calle 75 #3-83;124281;lavadora,aire acondicionado,wifi,ascensor,patio,piscina
+1191;Alojamiento_1191;Antioquia;Bello;apartamento;Calle 14 #63-53;135535;bbq,patio,caja fuerte
+1192;Alojamiento_1192;Antioquia;Rionegro;casa;Calle 58 #48-99;144353;aire acondicionado,caja fuerte,ascensor,parqueadero
+1193;Alojamiento_1193;Antioquia;Medellin;casa barrio;Calle 74 #5-25;29143;parqueadero,tv,wifi
+1194;Alojamiento_1194;Antioquia;Itagui;apartamento;Calle 14 #63-53;28681;bbq,aire acondicionado,caja fuerte,lavadora
+1195;Alojamiento_1195;Antioquia;Envigado;casa;Calle 22 #36-96;78855;lavadora,aire acondicionado,patio,ascensor
+1196;Alojamiento_1196;Antioquia;Medellin;casa;Calle 20 #82-79;68506;wifi,aire acondicionado,parqueadero
+1197;Alojamiento_1197;Antioquia;Rionegro;apartamento;Calle 98 #66-15;75004;parqueadero,bbq,patio,tv,wifi
+1198;Alojamiento_1198;Antioquia;Rionegro;casa barrio;Calle 42 #67-10;134841;piscina,lavadora,ascensor,aire acondicionado,bbq,parqueadero
+1199;Alojamiento_1199;Antioquia;Rionegro;casa;Calle 5 #55-47;47715;aire acondicionado,bbq,patio,ascensor,piscina
+1200;Alojamiento_1200;Antioquia;Envigado;casa barrio;Calle 38 #1-82;98810;piscina,parqueadero,bbq,tv
+1201;Alojamiento_1201;Antioquia;Medellin;casa;Calle 42 #67-10;55456;aire acondicionado,lavadora,patio,ascensor
+1202;Alojamiento_1202;Antioquia;Rionegro;casa;Calle 68 #67-59;135517;lavadora,caja fuerte,parqueadero,tv,aire acondicionado
+1203;Alojamiento_1203;Antioquia;Bello;casa;Calle 24 #71-51;106151;bbq,caja fuerte,ascensor,tv,patio
+1204;Alojamiento_1204;Antioquia;Medellin;casa;Calle 31 #40-64;78299;patio,lavadora,parqueadero
+1205;Alojamiento_1205;Antioquia;Envigado;casa;Calle 81 #94-79;76436;wifi,patio,bbq
+1206;Alojamiento_1206;Antioquia;Bello;casa barrio;Calle 31 #40-64;58790;caja fuerte,ascensor,tv,piscina,lavadora,parqueadero
+1207;Alojamiento_1207;Antioquia;Envigado;apartamento;Calle 70 #69-84;133278;bbq,tv,parqueadero,piscina
+1208;Alojamiento_1208;Antioquia;Bello;casa barrio;Calle 25 #64-68;116007;tv,patio,caja fuerte
+1209;Alojamiento_1209;Antioquia;Envigado;casa barrio;Calle 25 #64-68;79896;tv,patio,ascensor,caja fuerte
+1210;Alojamiento_1210;Antioquia;Envigado;apartamento;Calle 26 #26-64;26816;lavadora,parqueadero,caja fuerte,ascensor
+1211;Alojamiento_1211;Antioquia;Itagui;casa barrio;Calle 47 #48-50;116182;ascensor,bbq,patio,caja fuerte
+1212;Alojamiento_1212;Antioquia;Medellin;casa barrio;Calle 52 #29-31;101372;aire acondicionado,ascensor,patio
+1213;Alojamiento_1213;Antioquia;Rionegro;casa;Calle 68 #67-59;39870;ascensor,tv,bbq,wifi,aire acondicionado
+1214;Alojamiento_1214;Antioquia;Rionegro;casa barrio;Calle 100 #71-25;146128;wifi,ascensor,caja fuerte,piscina,aire acondicionado
+1215;Alojamiento_1215;Antioquia;Itagui;casa;Calle 99 #23-29;56267;wifi,ascensor,bbq,lavadora,aire acondicionado,caja fuerte
+1216;Alojamiento_1216;Antioquia;Itagui;apartamento;Calle 51 #57-98;48412;tv,patio,parqueadero,caja fuerte
+1217;Alojamiento_1217;Antioquia;Envigado;casa;Calle 78 #23-76;66410;parqueadero,piscina,patio,ascensor,bbq
+1218;Alojamiento_1218;Antioquia;Medellin;casa;Calle 92 #45-96;66451;aire acondicionado,bbq,piscina,wifi
+1219;Alojamiento_1219;Antioquia;Rionegro;apartamento;Calle 65 #23-16;84462;caja fuerte,patio,bbq
+1220;Alojamiento_1220;Antioquia;Bello;apartamento;Calle 73 #61-11;43118;patio,lavadora,piscina
+1221;Alojamiento_1221;Antioquia;Bello;casa barrio;Calle 45 #63-11;139932;bbq,caja fuerte,piscina,lavadora,tv
+1222;Alojamiento_1222;Antioquia;Envigado;apartamento;Calle 16 #15-50;46255;lavadora,aire acondicionado,patio,bbq,caja fuerte,parqueadero
+1223;Alojamiento_1223;Antioquia;Bello;casa barrio;Calle 64 #54-7;128431;ascensor,parqueadero,tv,wifi,patio,bbq
+1224;Alojamiento_1224;Antioquia;Medellin;casa;Calle 46 #92-80;113411;lavadora,piscina,parqueadero,wifi
+1225;Alojamiento_1225;Antioquia;Envigado;casa;Calle 80 #23-75;53077;bbq,wifi,piscina,tv,ascensor,aire acondicionado
+1226;Alojamiento_1226;Antioquia;Bello;apartamento;Calle 4 #26-63;35303;patio,aire acondicionado,wifi
+1227;Alojamiento_1227;Antioquia;Envigado;apartamento;Calle 28 #1-49;42431;tv,parqueadero,lavadora,piscina,patio
+1228;Alojamiento_1228;Antioquia;Envigado;casa;Calle 82 #38-57;127414;caja fuerte,piscina,tv,ascensor
+1229;Alojamiento_1229;Antioquia;Rionegro;casa;Calle 64 #54-7;74880;parqueadero,ascensor,wifi,piscina,patio
+1230;Alojamiento_1230;Antioquia;Itagui;casa;Calle 92 #45-96;55938;lavadora,bbq,parqueadero
+1231;Alojamiento_1231;Antioquia;Bello;apartamento;Calle 20 #82-79;55229;ascensor,parqueadero,bbq,patio,caja fuerte
+1232;Alojamiento_1232;Antioquia;Rionegro;casa;Calle 59 #94-54;141607;tv,wifi,aire acondicionado,ascensor
+1233;Alojamiento_1233;Antioquia;Bello;casa;Calle 44 #85-49;98418;parqueadero,wifi,ascensor
+1234;Alojamiento_1234;Antioquia;Bello;casa barrio;Calle 76 #28-83;149615;patio,lavadora,piscina,wifi
+1235;Alojamiento_1235;Antioquia;Rionegro;casa;Calle 80 #23-75;29453;aire acondicionado,piscina,parqueadero
+1236;Alojamiento_1236;Antioquia;Itagui;apartamento;Calle 24 #71-51;26235;ascensor,lavadora,wifi
+1237;Alojamiento_1237;Antioquia;Medellin;casa barrio;Calle 4 #26-63;92559;lavadora,bbq,aire acondicionado,parqueadero,wifi,caja fuerte
+1238;Alojamiento_1238;Antioquia;Itagui;casa barrio;Calle 61 #20-15;69511;tv,patio,caja fuerte
+1239;Alojamiento_1239;Antioquia;Rionegro;casa barrio;Calle 84 #81-13;125632;ascensor,parqueadero,piscina
+1240;Alojamiento_1240;Antioquia;Itagui;casa;Calle 15 #25-37;110094;bbq,ascensor,lavadora,tv,piscina
+1241;Alojamiento_1241;Antioquia;Itagui;casa barrio;Calle 83 #100-85;138754;parqueadero,patio,caja fuerte,piscina
+1242;Alojamiento_1242;Antioquia;Bello;apartamento;Calle 71 #19-62;75877;ascensor,aire acondicionado,bbq,wifi,parqueadero,patio
+1243;Alojamiento_1243;Antioquia;Itagui;apartamento;Calle 43 #37-62;143865;caja fuerte,bbq,patio,parqueadero,wifi,tv
+1244;Alojamiento_1244;Antioquia;Rionegro;casa barrio;Calle 59 #94-54;45684;aire acondicionado,bbq,parqueadero,caja fuerte
+1245;Alojamiento_1245;Antioquia;Bello;casa;Calle 96 #13-14;99245;piscina,caja fuerte,patio,tv,aire acondicionado,wifi
+1246;Alojamiento_1246;Antioquia;Bello;casa barrio;Calle 78 #23-76;31441;wifi,parqueadero,aire acondicionado
+1247;Alojamiento_1247;Antioquia;Itagui;apartamento;Calle 38 #1-82;74769;piscina,bbq,ascensor
+1248;Alojamiento_1248;Antioquia;Rionegro;apartamento;Calle 79 #18-44;39294;parqueadero,piscina,tv,ascensor
+1249;Alojamiento_1249;Antioquia;Bello;casa;Calle 52 #29-31;114403;caja fuerte,ascensor,aire acondicionado,piscina,tv
