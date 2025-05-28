@@ -4,7 +4,7 @@
 
 Reservacion::Reservacion() : cedula_usuario(0), id_alojamiento(0), metodo_pago(""), pregunta_cliente("") {}
 
-Reservacion::Reservacion(const std::string& cod, long cedula, int id_aloja,
+Reservacion::Reservacion(const std::string& cod, int cedula, int id_aloja,
                          const Fecha& pago, const std::string& metodo,
                          const Fecha& inicio, const Fecha& fin,
                          const std::string& pregunta)
@@ -22,7 +22,7 @@ Reservacion::Reservacion(const Reservacion &otra)
 Reservacion::~Reservacion() {}
 
 std::string Reservacion::getCodigo() const { return codigo; }
-long Reservacion::getCedulaUsuario() const { return cedula_usuario; }
+int Reservacion::getCedulaUsuario() const { return cedula_usuario; }
 int Reservacion::getIdAlojamiento() const { return id_alojamiento; }
 Fecha Reservacion::getFechaPago() const { return fecha_pago; }
 std::string Reservacion::getMetodoPago() const { return metodo_pago; }

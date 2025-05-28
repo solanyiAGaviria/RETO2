@@ -914,3 +914,42 @@ void CargaDatos::redimensionarReservas() {
     reservas = nuevo;
 }
 
+void CargaDatos::estimarMemoria() {
+    const int tamReserva = 256;  // 3 fechas + strings aproximado
+    const int tamUsuarioBase = 128; // aproximado
+    const int tamAlojamientoBase = 128;//aproximado
+    const int tamAnfitrionBase = 64;//aproximado
+    const int puntero = sizeof(void*);
+
+    int usuarioInferior = tamUsuarioBase + 4 * puntero;
+    int usuarioSuperior = tamUsuarioBase + 10 * puntero;
+
+    int alojamientoInferior = tamAlojamientoBase + 4 * puntero;
+    int alojamientoSuperior = tamAlojamientoBase + 10 * puntero;
+
+    int anfitrionInferior = tamAnfitrionBase + 2 * puntero;
+    int anfitrionSuperior = tamAnfitrionBase + 5 * puntero;
+
+    int totalReservaMem = totalReservas * tamReserva;
+
+    int totalUsuarioMin = totalUsuarios * usuarioInferior;
+    int totalUsuarioMax = totalUsuarios * usuarioSuperior;
+
+    int totalAlojMin = totalAlojamientos * alojamientoInferior;
+    int totalAlojMax = totalAlojamientos * alojamientoSuperior;
+
+    int totalAnfitrionMin = totalAnfitriones * anfitrionInferior;
+    int totalAnfitrionMax = totalAnfitriones * anfitrionSuperior;
+
+    int totalMin = totalReservaMem + totalUsuarioMin + totalAlojMin + totalAnfitrionMin;
+    int totalMax = totalReservaMem + totalUsuarioMax + totalAlojMax + totalAnfitrionMax;
+
+    std::cout << "\n--- Estimacion de memoria ---\n";
+    std::cout << "Reservaciones: " << totalReservas << " x ~" << tamReserva << " bytes\n";
+    std::cout << "Usuarios:      " << totalUsuarios << " x 4-10 reservas\n";
+    std::cout << "Alojamientos:  " << totalAlojamientos << " x 4-10 reservas\n";
+    std::cout << "Anfitriones:   " << totalAnfitriones << " x 2-5 alojamientos\n\n";
+
+    std::cout << "Memoria estimada minima: " << totalMin << " bytes (" << totalMin / 1024 << " KB)\n";
+    std::cout << "Memoria estimada maxima: " << totalMax << " bytes (" << totalMax / 1024 << " KB)\n\n";
+}

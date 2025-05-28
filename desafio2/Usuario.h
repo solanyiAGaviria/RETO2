@@ -6,7 +6,7 @@
 
 class Usuario {
 private:
-    long cedula;
+    int cedula;
     std::string nombre;
     std::string clave;
     float calificacion;
@@ -19,11 +19,11 @@ private:
 
 public:
     Usuario();
-    Usuario(long ced, const std::string& nom, const std::string& clave_, float calif);
+    Usuario(int ced, const std::string& nom, const std::string& clave_, float calif);
     Usuario(const Usuario& otro);
     ~Usuario();
 
-    long getCedula() const;
+    int getCedula() const;
     std::string getNombre() const;
     std::string getClave() const;
     float getCalificacion() const;

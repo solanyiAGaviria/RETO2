@@ -9,7 +9,7 @@ Usuario::Usuario() : cedula(0), calificacion(0.0f), cantidadReservas(0) {
     for (int i = 0; i < capacidadReservas; i++) reservas[i] = nullptr;
 }
 
-Usuario::Usuario(long ced, const string& nom, const string& clave_, float calif)
+Usuario::Usuario(int ced, const string& nom, const string& clave_, float calif)
     : cedula(ced), nombre(nom), clave(clave_), calificacion(calif), cantidadReservas(0) {
     capacidadReservas = 5;
     reservas = new Reservacion*[capacidadReservas];
@@ -66,7 +66,7 @@ void Usuario::resetReservas() {
     cantidadReservas = 0;
 }
 
-long Usuario::getCedula() const { return cedula; }
+int Usuario::getCedula() const { return cedula; }
 string Usuario::getNombre() const { return nombre; }
 string Usuario::getClave() const { return clave; }
 float Usuario::getCalificacion() const { return calificacion; }

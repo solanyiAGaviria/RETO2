@@ -8,7 +8,7 @@
 class Reservacion {
 private:
     std::string codigo;
-    long cedula_usuario;
+    int cedula_usuario;
     int id_alojamiento;
     Fecha fecha_pago;
     std::string metodo_pago;
@@ -18,7 +18,7 @@ private:
 
 public:
     Reservacion();
-    Reservacion(const std::string& cod, long cedula, int id_aloja,
+    Reservacion(const std::string& cod, int cedula, int id_aloja,
                 const Fecha& pago, const std::string& metodo,
                 const Fecha& inicio, const Fecha& fin,
                 const std::string& pregunta);
@@ -27,7 +27,7 @@ public:
     ~Reservacion();
 
     std::string getCodigo() const;
-    long getCedulaUsuario() const;
+    int getCedulaUsuario() const;
     int getIdAlojamiento() const;
     Fecha getFechaPago() const;
     std::string getMetodoPago() const;

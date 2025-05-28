@@ -138,6 +138,8 @@ int main() {
     sistema.cargarUsuarios("usuarios.txt");
     sistema.cargarReservaciones("reservas.txt");
 
+    sistema.estimarMemoria();
+
     menuPrincipal(sistema);
 
     sistema.guardarReservasEnArchivo("reservas.txt");

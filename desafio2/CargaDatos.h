@@ -73,6 +73,8 @@ public:
     void consultarReservacionesAnfitrion(Anfitrion* anfitrion);
     void eliminarReservacionAnfitrion(Anfitrion* anfitrion);
     void actualizarHistorico(Anfitrion* anfitrion);
+    void estimarMemoria();
+
 
 };
 

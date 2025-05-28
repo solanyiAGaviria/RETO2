@@ -6,7 +6,7 @@
 
 class Anfitrion {
 private:
-    long cedula;
+    int cedula;
     std::string nombre;
     std::string clave;
     int antiguedad_meses;
@@ -20,11 +20,11 @@ private:
 
 public:
     Anfitrion();
-    Anfitrion(long ced, const std::string& nom, const std::string& clave_, int ant, float calif);
+    Anfitrion(int ced, const std::string& nom, const std::string& clave_, int ant, float calif);
     Anfitrion(const Anfitrion& otro);
     ~Anfitrion();
 
-    long getCedula() const;
+    int getCedula() const;
     std::string getNombre() const;
     std::string getClave() const;
     int getAntiguedad() const;

@@ -9,7 +9,7 @@ Anfitrion::Anfitrion() : cedula(0), antiguedad_meses(0), calificacion(0.0f), can
     for (int i = 0; i < capacidadAlojamientos; i++) alojamientos[i] = nullptr;
 }
 
-Anfitrion::Anfitrion(long ced, const std::string& nom, const std::string& clave_, int ant, float calif)
+Anfitrion::Anfitrion(int ced, const std::string& nom, const std::string& clave_, int ant, float calif)
     : cedula(ced), nombre(nom), clave(clave_), antiguedad_meses(ant), calificacion(calif), cantidadAlojamientos(0) {
     capacidadAlojamientos = 5;
     alojamientos = new Alojamiento*[capacidadAlojamientos];
@@ -35,7 +35,7 @@ Anfitrion::~Anfitrion() {
     delete[] alojamientos;
 }
 
-long Anfitrion::getCedula() const { return cedula; }
+int Anfitrion::getCedula() const { return cedula; }
 std::string Anfitrion::getNombre() const { return nombre; }
 std::string Anfitrion::getClave() const { return clave; }
 int Anfitrion::getAntiguedad() const { return antiguedad_meses; }
